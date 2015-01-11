@@ -10,6 +10,7 @@ public class LaunchApp extends Application {
 	public static String bus;
 	public static String tramway;
 	public static String rer;
+	public static String settings;
 
 	@Override
 	public void onCreate() {
@@ -20,6 +21,7 @@ public class LaunchApp extends Application {
 		bus = getString(R.string.bus);
 		tramway = getString(R.string.tramway);
 		rer = getString(R.string.rer);
+		settings = getString(R.string.settings);
 	}
 
 }

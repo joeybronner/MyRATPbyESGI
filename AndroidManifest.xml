@@ -9,11 +9,11 @@
         android:targetSdkVersion="21" />
 
     <application
+        android:name=".utils.LaunchApp"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme"
-        android:name="fr.esgi.ratp.utils.LaunchApp" >
+        android:theme="@style/AppTheme" >
 
         <!-- Home -->
         <activity
@@ -30,6 +30,14 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="fr.esgi.ratp.MainActivity" />
         </activity>
     </application>
 

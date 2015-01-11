@@ -2,6 +2,7 @@ package fr.esgi.ratp;
 
 import fr.esgi.ratp.utils.Constants;
 import fr.esgi.ratp.utils.LaunchApp;
+import fr.esgi.ratp.utils.Utilities;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
@@ -31,6 +32,7 @@ public class MainActivity extends Activity implements OnItemClickListener
 		new LauncherIcon(R.drawable.bus, LaunchApp.bus, "bus"),
 		new LauncherIcon(R.drawable.tramway, LaunchApp.tramway, "tramway"),
 		new LauncherIcon(R.drawable.rer, LaunchApp.rer, "RER"),
+		new LauncherIcon(R.drawable.settings, LaunchApp.settings, "settings"),
 		};
 
 	@Override
@@ -81,6 +83,10 @@ public class MainActivity extends Activity implements OnItemClickListener
 		else if (icon_selected.equals("rer"))
 		{
 			//Utilities.openView(this, SettingsActivity.class);
+		}
+		else if (icon_selected.equals("settings"))
+		{
+			Utilities.openView(this, SettingsActivity.class);
 		}
 		else
 		{

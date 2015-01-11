@@ -3,9 +3,20 @@
 
     <string name="app_name">MyRATPbyESGI</string>
     <string name="action_settings">Settings</string>
-    
+
     <!-- Splash Screen -->
     <string name="title_activity_splash_screen">SplashScreen</string>
     <string name="splashscreencontentdescription">SplashScreen</string>
+    <string name="title_activity_tra">TRa</string>
+    <string name="hello_world">Hello world!</string>
+    
+    <!-- Home -->
+    <string name="underground">UNDERGROUND</string>
+    <string name="bus">BUS</string>
+    <string name="tramway">TRAMWAY</string>
+    <string name="rer">RER</string>
 
+    <!-- Errors -->
+    <string name="err_loading_view">Error while trying to load a view.</string>
+    <string name="nodescription">nodescription.</string>
 </resources>

@@ -31,7 +31,7 @@ public class MainActivity extends Activity implements OnItemClickListener
 		new LauncherIcon(R.drawable.metro, LaunchApp.underground, "underground"),
 		new LauncherIcon(R.drawable.bus, LaunchApp.bus, "bus"),
 		new LauncherIcon(R.drawable.tramway, LaunchApp.tramway, "tramway"),
-		new LauncherIcon(R.drawable.rer, LaunchApp.rer, "RER"),
+		new LauncherIcon(R.drawable.rer, LaunchApp.rer, "rer"),
 		new LauncherIcon(R.drawable.settings, LaunchApp.settings, "settings"),
 		};
 
@@ -70,19 +70,19 @@ public class MainActivity extends Activity implements OnItemClickListener
 		String icon_selected = ICONS[position].map;
 		if (icon_selected.equals("underground"))
 		{
-			//Utilities.openView(this, MainActivity.class);
+			Utilities.openView(this, LinesActivity.class);
 		}
 		else if (icon_selected.equals("bus"))
 		{
-			//Utilities.openView(this, HistoryActivity.class);
+			Utilities.openView(this, LinesActivity.class);
 		}
 		else if (icon_selected.equals("tramway"))
 		{
-			//Utilities.openView(this, HelpActivity.class);
+			Utilities.openView(this, LinesActivity.class);
 		}
 		else if (icon_selected.equals("rer"))
 		{
-			//Utilities.openView(this, SettingsActivity.class);
+			Utilities.openView(this, LinesActivity.class);
 		}
 		else if (icon_selected.equals("settings"))
 		{

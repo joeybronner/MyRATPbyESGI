@@ -9,5 +9,13 @@
     tools:context="fr.esgi.ratp.SettingsActivity"
     android:background="@color/gray" >
 
+    <Button
+        android:id="@+id/btLoadData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="75dp"
+        android:text="Load Data" />
 
 </RelativeLayout>

@@ -44,7 +44,7 @@ public class DataBaseOperations extends SQLiteOpenHelper {
 		onCreate(db);
 	}
 
-	public boolean insertLine  (String nameLine, String departureLine, String arrivalLine, String typeLine,int iDStation)
+	public boolean insertLine(String nameLine, String departureLine, String arrivalLine, String typeLine,int iDStation)
 	{
 		SQLiteDatabase db = this.getWritableDatabase();
 		ContentValues contentValues = new ContentValues();
@@ -79,12 +79,16 @@ public class DataBaseOperations extends SQLiteOpenHelper {
 		return true;
 	}
 
-	public Integer deleteLine (Integer id)
-	{
+	public Integer deleteLine(Integer id) {
 		SQLiteDatabase db = this.getWritableDatabase();
 		return db.delete("line", 
 				"id = ? ", 
 				new String[] { Integer.toString(id) });
+	}
+	
+	public void purgeData() {
+		SQLiteDatabase db = this.getWritableDatabase();
+		db.execSQL("delete from "+ LINE_TABLE_NAME);
 	}
 
 	public ArrayList<String> getAllLine()

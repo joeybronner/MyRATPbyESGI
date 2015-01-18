@@ -47,6 +47,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="fr.esgi.ratp.MainActivity" />
         </activity>
+        <activity
+            android:name=".LineStationsActivity"
+            android:label="@string/title_activity_line_stations"
+            android:parentActivityName=".LinesActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="fr.esgi.ratp.LinesActivity" />
+        </activity>
     </application>
 
 </manifest>

@@ -21,8 +21,9 @@
     <string name="title_activity_settings">SettingsActivity</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_lines">LinesActivity</string>
-    
+
     <!-- Lines -->
     <string name="tvsearch">Recherche</string>
+    <string name="title_activity_line_stations">LineStationsActivity</string>
 
 </resources>

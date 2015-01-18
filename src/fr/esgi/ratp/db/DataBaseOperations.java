@@ -1,6 +1,5 @@
 package fr.esgi.ratp.db;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import android.R.integer;
 import android.content.ContentValues;
@@ -13,7 +12,10 @@ import fr.esgi.ratp.objects.Line;
 
 public class DataBaseOperations extends SQLiteOpenHelper {
 
+	// GLOBAL
 	public static final String DATABASE_NAME = "ratp";
+	
+	// LINE
 	public static final String LINE_TABLE_NAME = "line";
 	public static final String LINE_COLUMN_IDLINE = "idLine";
 	public static final String LINE_COLUMN_NAMELINE = "nameLine";
@@ -21,8 +23,15 @@ public class DataBaseOperations extends SQLiteOpenHelper {
 	public static final String LINE_COLUMN_ARRIVALLINE = "arrivalLine";
 	public static final String LINE_COLUMN_TYPELINE = "typeLine";
 	public static final String LINE_COLUMN_IDSTATION = "iDStation";
-
-	private HashMap hp;
+	
+	
+	// STATION
+	public static final String STATION_TABLE_NAME = "station";
+	public static final String STATION_COLUMN_IDSTATION = "idStation";
+	public static final String STATION_COLUMN_NAMESTATION= "nameStation";
+	public static final String STATION_COLUMN_LATITUDE = "latitudeStation";
+	public static final String STATION_COLUMN_LONGITUDE = "longitudeStation";
+	public static final String STATION_COLUMN_TYPE = "typeStation";
 
 	public DataBaseOperations(Context context)
 	{
@@ -36,12 +45,18 @@ public class DataBaseOperations extends SQLiteOpenHelper {
 				"create table line " +
 						"(idLine integer primary key,nameLine text,departureLine text,arrivalLine text, typeLine text,iDStation integer)"
 				);
+		
+		db.execSQL(
+				"create table station " +
+						"(idStation integer primary key,nameStation text,latitudeStation text,longitudeStation text, typeStation text)"
+				);
 	}
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		// TODO Auto-generated method stub
 		db.execSQL("DROP TABLE IF EXISTS line");
+		db.execSQL("DROP TABLE IF EXISTS station");
 		onCreate(db);
 	}
 
@@ -87,9 +102,14 @@ public class DataBaseOperations extends SQLiteOpenHelper {
 				new String[] { Integer.toString(id) });
 	}
 
-	public void purgeData() {
+	public void purgeLineTable() {
 		SQLiteDatabase db = this.getWritableDatabase();
 		db.execSQL("DELETE FROM "+ LINE_TABLE_NAME);
+	}
+	
+	public void purgeStationTable() {
+		SQLiteDatabase db = this.getWritableDatabase();
+		db.execSQL("DELETE FROM "+ STATION_TABLE_NAME);
 	}
 
 	public ArrayList<Line> getAllLinesByType(String type)

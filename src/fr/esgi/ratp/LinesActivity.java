@@ -2,6 +2,7 @@ package fr.esgi.ratp;
 
 import java.util.ArrayList;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,16 +13,19 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import fr.esgi.ratp.db.DataBaseOperations;
 import fr.esgi.ratp.objects.Line;
+import fr.esgi.ratp.utils.Utilities;
 
 public class LinesActivity extends Activity {
 
 	ListView listLine;
 	ArrayAdapter<String> adapter;
 
-	@Override
+	@SuppressLint("DefaultLocale") @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_lines);
@@ -42,6 +46,23 @@ public class LinesActivity extends Activity {
 			allLines[i] = "Ligne " + line.getNameLine();
 			i++;
 		}
+		
+		// Change Title content
+		TextView tvTitle = (TextView) findViewById(R.id.tvTitle);
+		tvTitle.setText(type.toUpperCase());
+		
+		// Change image
+		ImageView ivType = (ImageView) findViewById(R.id.ivType);
+		if (type.equals("metro")) {
+			ivType.setImageResource(R.drawable.metro);
+		} else if (type.equals("rer")) {
+			ivType.setImageResource(R.drawable.rer);
+		} else if (type.equals("tram")) {
+			ivType.setImageResource(R.drawable.tramway);
+		} else if (type.equals("bus")) {
+			ivType.setImageResource(R.drawable.bus);
+		}
+		
 
 		// Load lines
 		listLine = (ListView) findViewById(R.id.listLine);
@@ -55,7 +76,8 @@ public class LinesActivity extends Activity {
 		listLine.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				// View line detail
+				// Open Line detail
+				Utilities.openView(LinesActivity.this, LineStationsActivity.class);
 			}
 		});
 

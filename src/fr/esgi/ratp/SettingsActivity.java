@@ -3,8 +3,6 @@ package fr.esgi.ratp;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-import fr.esgi.ratp.db.DataBaseOperations;
-import fr.esgi.ratp.util.Constants;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.res.AssetManager;
@@ -12,15 +10,20 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import fr.esgi.ratp.db.DataBaseOperations;
+import fr.esgi.ratp.utils.Constants;
 
 public class SettingsActivity extends Activity {
 
+	// Line
 	String nameLine = "";
 	String departureLine = "";
 	String arrivalLine = "";
 	String typeLine = "";
 	int iDStation = 0;
 
+	// Station
+	
 	// Database
 	final DataBaseOperations db = new DataBaseOperations(this);
 
@@ -43,7 +46,12 @@ public class SettingsActivity extends Activity {
 	}
 
 	private void purgeData(DataBaseOperations db) {
-		db.purgeData();
+		db.purgeLineTable();
+		db.purgeStationTable();
+	}
+	
+	private void loadStations(final DataBaseOperations db) {
+		
 	}
 
 	private void loadLines(final DataBaseOperations db) {
@@ -108,6 +116,7 @@ public class SettingsActivity extends Activity {
 			public void run() {
 				purgeData(db);
 				loadLines(db);
+				//loadStations(db);
 				ringProgressDialog.dismiss();
 			}
 		}).start();

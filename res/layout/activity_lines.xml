@@ -9,17 +9,36 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="fr.esgi.ratp.LinesActivity" >
 
- 
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/ivType"
+        android:layout_marginLeft="20dp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <ImageView
+        android:id="@+id/ivType"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_alignTop="@id/tvTitle"
+        android:layout_alignBottom="@id/tvTitle"
+        android:src="@drawable/bus" />
 
     <EditText
         android:id="@+id/etSearch"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_below="@id/tvTitle"
+        android:layout_marginTop="10dp"
         android:ems="10"
+        android:hint="@string/tvsearch"
         android:textColor="@color/white"
-        android:textColorHint="@color/gray"
-        android:hint="@string/tvsearch" >
+        android:textColorHint="@color/gray" >
+
         <requestFocus />
     </EditText>
 
@@ -27,7 +46,8 @@
         android:id="@+id/listLine"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/etSearch" >
+        android:layout_below="@id/etSearch"
+        android:layout_marginTop="10dp" >
     </ListView>
 
 </RelativeLayout>

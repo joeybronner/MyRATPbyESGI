@@ -28,9 +28,9 @@ public class MainActivity extends Activity implements OnItemClickListener
 	final static LauncherIcon[] ICONS =
 		{
 		// LauncherIcon (<icon>, <text>, <id>)
-		new LauncherIcon(R.drawable.metro, LaunchApp.underground, "underground"),
+		new LauncherIcon(R.drawable.metro, LaunchApp.underground, "metro"),
 		new LauncherIcon(R.drawable.bus, LaunchApp.bus, "bus"),
-		new LauncherIcon(R.drawable.tramway, LaunchApp.tramway, "tramway"),
+		new LauncherIcon(R.drawable.tramway, LaunchApp.tramway, "tram"),
 		new LauncherIcon(R.drawable.rer, LaunchApp.rer, "rer"),
 		new LauncherIcon(R.drawable.settings, LaunchApp.settings, "settings"),
 		};
@@ -41,7 +41,7 @@ public class MainActivity extends Activity implements OnItemClickListener
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		GridView gridview = (GridView) findViewById(R.id.dashboard_grid);
+		GridView gridview = (GridView) MainActivity.this.findViewById(R.id.dashboard_grid);
 		gridview.setAdapter(new ImageAdapter(this));
 		gridview.setOnItemClickListener(this);
 
@@ -68,21 +68,21 @@ public class MainActivity extends Activity implements OnItemClickListener
 		//TODO: link to other views
 		// Here, redirect to the good view
 		String icon_selected = ICONS[position].map;
-		if (icon_selected.equals("underground"))
+		if (icon_selected.equals("metro"))
 		{
-			Utilities.openView(this, LinesActivity.class);
+			Utilities.openView(this, LinesActivity.class, "metro");
 		}
 		else if (icon_selected.equals("bus"))
 		{
-			Utilities.openView(this, LinesActivity.class);
+			Utilities.openView(this, LinesActivity.class, "bus");
 		}
-		else if (icon_selected.equals("tramway"))
+		else if (icon_selected.equals("tram"))
 		{
-			Utilities.openView(this, LinesActivity.class);
+			Utilities.openView(this, LinesActivity.class, "tram");
 		}
 		else if (icon_selected.equals("rer"))
 		{
-			Utilities.openView(this, LinesActivity.class);
+			Utilities.openView(this, LinesActivity.class, "rer");
 		}
 		else if (icon_selected.equals("settings"))
 		{

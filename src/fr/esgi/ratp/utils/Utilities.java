@@ -20,5 +20,11 @@ public class Utilities {
 		Intent intent = new Intent(c, cla);
 		c.startActivity(intent);
 	}
+	
+	public static void openView(Context c, Class<?> cla, String param) {
+		Intent intent = new Intent(c, cla);
+		intent.putExtra("type",param);
+		c.startActivity(intent);
+	}
 
 }

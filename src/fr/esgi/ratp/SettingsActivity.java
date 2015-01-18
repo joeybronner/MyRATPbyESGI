@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import fr.esgi.ratp.db.DataBaseOperations;
 import fr.esgi.ratp.util.Constants;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,12 +14,15 @@ import android.view.View;
 import android.widget.Button;
 
 public class SettingsActivity extends Activity {
-	
+
 	String nameLine = "";
 	String departureLine = "";
 	String arrivalLine = "";
 	String typeLine = "";
 	int iDStation = 0;
+
+	// Database
+	final DataBaseOperations db = new DataBaseOperations(this);
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -28,24 +32,21 @@ public class SettingsActivity extends Activity {
 		//Hide Action Bar
 		getActionBar().hide();
 
-		// Database
-		final DataBaseOperations db = new DataBaseOperations(this);
-		
 		// Button Load Data
 		final Button button = (Button) findViewById(R.id.btLoadData);
 		button.setOnClickListener(new View.OnClickListener() {
+			@Override
 			public void onClick(View v) {
-				purgeData(db);
-				loadLines(db);
+				cleanData();
 			}
 		});
 	}
-	
+
 	private void purgeData(DataBaseOperations db) {
 		db.purgeData();
 	}
 
-	private void loadLines(DataBaseOperations db) {
+	private void loadLines(final DataBaseOperations db) {
 		AssetManager assetManager = getAssets();
 		try {
 			BufferedReader fichierLigne = new BufferedReader(new InputStreamReader(assetManager.open(Constants.FILE_RATP_LINE)));	
@@ -97,5 +98,18 @@ public class SettingsActivity extends Activity {
 		} catch (Exception e) {
 			//TODO: Write exception.
 		}
+	}
+
+	public void cleanData() {
+		final ProgressDialog ringProgressDialog = ProgressDialog.show(SettingsActivity.this, "Veuillez patienter...", "Chargement des lignes et stations à partir du fichier RATP", false);
+		ringProgressDialog.setCancelable(true);
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				purgeData(db);
+				loadLines(db);
+				ringProgressDialog.dismiss();
+			}
+		}).start();
 	}
 }

@@ -9,6 +9,7 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import fr.esgi.ratp.objects.Line;
 
 public class DataBaseOperations extends SQLiteOpenHelper {
 
@@ -85,23 +86,26 @@ public class DataBaseOperations extends SQLiteOpenHelper {
 				"id = ? ", 
 				new String[] { Integer.toString(id) });
 	}
-	
+
 	public void purgeData() {
 		SQLiteDatabase db = this.getWritableDatabase();
-		db.execSQL("delete from "+ LINE_TABLE_NAME);
+		db.execSQL("DELETE FROM "+ LINE_TABLE_NAME);
 	}
 
-	public ArrayList<String> getAllLine()
+	public ArrayList<Line> getAllLinesByType(String type)
 	{
-		ArrayList<String> array_list = new ArrayList<String>();
-		//hp = new HashMap();
+		ArrayList<Line> lines = new ArrayList<Line>();
 		SQLiteDatabase db = this.getReadableDatabase();
-		Cursor res =  db.rawQuery( "select * from line", null );
+		Cursor res =  db.rawQuery("SELECT DISTINCT " + LINE_COLUMN_NAMELINE +
+				" FROM " + LINE_TABLE_NAME +
+				" WHERE " + LINE_COLUMN_TYPELINE + "='" + type + "'", 
+				null );
 		res.moveToFirst();
 		while(res.isAfterLast() == false){
-			array_list.add(res.getString(res.getColumnIndex(LINE_COLUMN_NAMELINE)));
+			Line line = new Line(res.getString(res.getColumnIndex(LINE_COLUMN_NAMELINE)),"", "", type, 0);
+			lines.add(line);
 			res.moveToNext();
 		}
-		return array_list;
+		return lines;
 	}
 }

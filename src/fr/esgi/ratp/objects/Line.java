@@ -8,9 +8,9 @@ public class Line {
 	String typeLine;
 	int idLine;
 	
-	Line() { }
+	public Line() { }
 	
-	Line (String nameLine, String departureLine, String arrivalLine, 
+	public Line (String nameLine, String departureLine, String arrivalLine, 
 			String typeLine, int idLine) {
 		this.nameLine = nameLine;
 		this.departureLine = departureLine;

@@ -42,12 +42,41 @@ public class SettingsActivity extends Activity {
 		//Hide Action Bar
 		getActionBar().hide();
 
-		// Button Load Data
-		final Button button = (Button) findViewById(R.id.btLoadData);
+		// Button Purge Data
+		final Button button = (Button) findViewById(R.id.btPurgeData);
 		button.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				cleanData();
+				final ProgressDialog progressDialog = ProgressDialog.show(SettingsActivity.this, "Veuillez patienter...", "Chargement des lignes et stations à partir du fichier RATP", false);
+				progressDialog.setCancelable(false);
+				new Thread(new Runnable() {
+					@Override
+					public void run() {
+						db.purgeLineTable();
+						db.purgeStationTable();
+						progressDialog.dismiss();
+					}
+				}).start();
+			}
+		});
+		
+		// Button Load Data
+		final Button btLoad = (Button) findViewById(R.id.btLoadData);
+		btLoad.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				final ProgressDialog progressDialog = ProgressDialog.show(SettingsActivity.this, "Veuillez patienter...", "Chargement des lignes et stations à partir du fichier RATP", false);
+				progressDialog.setCancelable(false);
+				new Thread(new Runnable() {
+					@Override
+					public void run() {
+						db.purgeLineTable();
+						db.purgeStationTable();
+						loadLines(db);
+						loadStations(db);
+						progressDialog.dismiss();
+					}
+				}).start();
 			}
 		});
 	}
@@ -123,20 +152,5 @@ public class SettingsActivity extends Activity {
 		} catch (Exception e) {
 
 		}
-	}
-
-	public void cleanData() {
-		final ProgressDialog progressDialog = ProgressDialog.show(SettingsActivity.this, "Veuillez patienter...", "Chargement des lignes et stations à partir du fichier RATP", false);
-		progressDialog.setCancelable(false);
-		new Thread(new Runnable() {
-			@Override
-			public void run() {
-				db.purgeLineTable();
-				db.purgeStationTable();
-				loadLines(db);
-				loadStations(db);
-				progressDialog.dismiss();
-			}
-		}).start();
 	}
 }

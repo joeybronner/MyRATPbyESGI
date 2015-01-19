@@ -22,6 +22,7 @@
     <color name="white">#ffffff</color>
     <color name="darkgray">#919191</color>
     <color name="darkblue">#005987</color>
+    <color name="darkred">#B00003</color>
 
     <!-- Dashboard -->
     <style name="dashboard">

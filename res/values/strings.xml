@@ -15,6 +15,9 @@
     <string name="rer">RER</string>
     <string name="settings">SETTINGS</string>
 
+    <string name="purgeData">Purge data</string>
+    <string name="loadData">Load data</string>
+    
     <!-- Errors -->
     <string name="err_loading_view">Error while trying to load a view.</string>
     <string name="nodescription">nodescription.</string>

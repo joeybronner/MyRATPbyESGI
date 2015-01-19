@@ -63,33 +63,25 @@ public class MainActivity extends Activity implements OnItemClickListener
 	}
 
 	@Override
-	public void onItemClick(AdapterView<?> parent, View v, int position, long id)
-	{
-		//TODO: link to other views
+	public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
 		// Here, redirect to the good view
 		String icon_selected = ICONS[position].map;
-		if (icon_selected.equals("metro"))
-		{
+		if (icon_selected.equals("metro")) {
 			Utilities.openView(this, LinesActivity.class, "metro");
 		}
-		else if (icon_selected.equals("bus"))
-		{
+		else if (icon_selected.equals("bus")) {
 			Utilities.openView(this, LinesActivity.class, "bus");
 		}
-		else if (icon_selected.equals("tram"))
-		{
+		else if (icon_selected.equals("tram")) {
 			Utilities.openView(this, LinesActivity.class, "tram");
 		}
-		else if (icon_selected.equals("rer"))
-		{
+		else if (icon_selected.equals("rer")) {
 			Utilities.openView(this, LinesActivity.class, "rer");
 		}
-		else if (icon_selected.equals("settings"))
-		{
+		else if (icon_selected.equals("settings")) {
 			Utilities.openView(this, SettingsActivity.class);
 		}
-		else
-		{
+		else {
 			_errormsg = getResources().getString(R.string.err_loading_view);
 			Toast toast = Toast.makeText(this,_errormsg, Toast.LENGTH_LONG);
 			toast.show();
@@ -97,14 +89,12 @@ public class MainActivity extends Activity implements OnItemClickListener
 
 	}
 
-	static class LauncherIcon
-	{
+	static class LauncherIcon {
 		final String text;
 		final int imgId;
 		final String map;
 
-		public LauncherIcon(int imgId, String text, String map)
-		{
+		public LauncherIcon(int imgId, String text, String map) {
 			super();
 			this.imgId = imgId;
 			this.text = text;
@@ -117,20 +107,17 @@ public class MainActivity extends Activity implements OnItemClickListener
 	{
 		private Context mContext;
 
-		public ImageAdapter(Context c)
-		{
+		public ImageAdapter(Context c) {
 			mContext = c;
 		}
 
 		@Override
-		public int getCount()
-		{
+		public int getCount() {
 			return ICONS.length;
 		}
 
 		@Override
-		public LauncherIcon getItem(int position)
-		{
+		public LauncherIcon getItem(int position) {
 			return null;
 		}
 

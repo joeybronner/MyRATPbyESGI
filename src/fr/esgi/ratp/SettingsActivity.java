@@ -121,7 +121,7 @@ public class SettingsActivity extends Activity {
 			}
 			fichierLigne.close();
 		} catch (Exception e) {
-			//TODO: Write exception.
+
 		}
 	}
 
@@ -131,9 +131,9 @@ public class SettingsActivity extends Activity {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				//db.purgeLineTable();
+				db.purgeLineTable();
 				db.purgeStationTable();
-				//loadLines(db);
+				loadLines(db);
 				loadStations(db);
 				progressDialog.dismiss();
 			}

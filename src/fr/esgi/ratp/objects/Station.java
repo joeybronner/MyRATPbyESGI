@@ -21,7 +21,7 @@ public class Station {
 		this.idStation = idStation;
 	}
 	
-	protected int getidStation() {
+	public int getIDStation() {
 		return this.idStation;
 	}
 	
@@ -45,7 +45,7 @@ public class Station {
 		return this.longitude;
 	}
 	
-	protected void setIDLine(int idStation) {
+	public void setIDStation(int idStation) {
 		this.idStation = idStation;
 	}
 	

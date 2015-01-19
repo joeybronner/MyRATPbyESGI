@@ -55,6 +55,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="fr.esgi.ratp.LinesActivity" />
         </activity>
+        <activity
+            android:name=".AddStationActivity"
+            android:label="@string/title_activity_add_station" >
+        </activity>
+        <activity
+            android:name=".StationActivity"
+            android:label="@string/title_activity_station" >
+        </activity>
     </application>
 
 </manifest>

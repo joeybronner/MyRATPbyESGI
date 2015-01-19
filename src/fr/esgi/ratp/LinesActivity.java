@@ -24,6 +24,7 @@ public class LinesActivity extends Activity {
 
 	ListView listLine;
 	ArrayAdapter<String> adapter;
+	String type, lineName;
 
 	@SuppressLint("DefaultLocale") @Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +36,7 @@ public class LinesActivity extends Activity {
 
 		// Load type of lines
 		Intent myIntent = getIntent();
-		String type = myIntent.getStringExtra("type");
+		type = myIntent.getStringExtra("type");
 
 		// Load data from database
 		final DataBaseOperations db = new DataBaseOperations(this);
@@ -63,7 +64,6 @@ public class LinesActivity extends Activity {
 			ivType.setImageResource(R.drawable.bus);
 		}
 		
-
 		// Load lines
 		listLine = (ListView) findViewById(R.id.listLine);
 
@@ -77,7 +77,8 @@ public class LinesActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				// Open Line detail
-				Utilities.openView(LinesActivity.this, LineStationsActivity.class);
+				String selectedLine = listLine.getItemAtPosition(position).toString();
+				Utilities.openView(LinesActivity.this, LineStationsActivity.class, type, selectedLine);
 			}
 		});
 

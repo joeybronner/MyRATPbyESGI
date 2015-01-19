@@ -20,6 +20,8 @@
     <color name="gray">#eaeaea</color>
     <color name="blue">#0086cb</color>
     <color name="white">#ffffff</color>
+    <color name="darkgray">#919191</color>
+    <color name="darkblue">#005987</color>
 
     <!-- Dashboard -->
     <style name="dashboard">

@@ -70,8 +70,6 @@ public class SettingsActivity extends Activity {
 				new Thread(new Runnable() {
 					@Override
 					public void run() {
-						db.purgeLineTable();
-						db.purgeStationTable();
 						loadLines(db);
 						loadStations(db);
 						progressDialog.dismiss();

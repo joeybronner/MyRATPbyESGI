@@ -2,19 +2,18 @@ package fr.esgi.ratp.objects;
 
 public class Station {
 
-	String nameLine;
+	int idStation;
+	String nameStation;
 	String localisation;
 	String typeLine;
 	String latitude;
 	String longitude;
-	int idStation;
-	
 	
 	public Station() { }
 	
 	public Station (int idStation, String latitude, String longitude, 
-			String nameLine, String localisation, String typeLine) {
-		this.nameLine = nameLine;
+			String nameStation, String localisation, String typeLine) {
+		this.nameStation = nameStation;
 		this.localisation = localisation;
 		this.typeLine = typeLine;
 		this.latitude = latitude;
@@ -26,8 +25,8 @@ public class Station {
 		return this.idStation;
 	}
 	
-	public String getNameLine() {
-		return this.nameLine;
+	public String getNameStation() {
+		return this.nameStation;
 	}
 	
 	public String getLocalisation() {
@@ -50,8 +49,8 @@ public class Station {
 		this.idStation = idStation;
 	}
 	
-	public void setNameLine(String nameLine) {
-		this.nameLine = nameLine;
+	public void setNameStation(String nameStation) {
+		this.nameStation = nameStation;
 	}
 	
 	public void setLocalisation(String localisation) {

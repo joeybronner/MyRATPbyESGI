@@ -1,7 +1,6 @@
 package fr.esgi.ratp.db;
 import java.util.ArrayList;
 
-import android.R.integer;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -22,8 +21,6 @@ public class DataBaseOperations extends SQLiteOpenHelper {
 	public static final String LINE_COLUMN_DEPARTURELINE = "departureLine";
 	public static final String LINE_COLUMN_ARRIVALLINE = "arrivalLine";
 	public static final String LINE_COLUMN_TYPELINE = "typeLine";
-	public static final String LINE_COLUMN_IDSTATION = "iDStation";
-	
 	
 	// STATION
 	public static final String STATION_TABLE_NAME = "station";
@@ -40,7 +37,6 @@ public class DataBaseOperations extends SQLiteOpenHelper {
 
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-		// TODO Auto-generated method stub
 		db.execSQL(
 				"create table line " +
 						"(idLine integer primary key,nameLine text,departureLine text,arrivalLine text, typeLine text,iDStation integer)"
@@ -54,52 +50,46 @@ public class DataBaseOperations extends SQLiteOpenHelper {
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		// TODO Auto-generated method stub
-		db.execSQL("DROP TABLE IF EXISTS line");
-		db.execSQL("DROP TABLE IF EXISTS station");
+		db.execSQL("DROP TABLE IF EXISTS " + LINE_TABLE_NAME);
+		db.execSQL("DROP TABLE IF EXISTS " + STATION_TABLE_NAME);
 		onCreate(db);
 	}
-
-	public boolean insertLine(String nameLine, String departureLine, String arrivalLine, String typeLine,int iDStation)
-	{
+	
+	public boolean insertStation(int idStation, String nameStation, String localisation, 
+			String typeLine, String latitude, String longitude) {
 		SQLiteDatabase db = this.getWritableDatabase();
 		ContentValues contentValues = new ContentValues();
-		contentValues.put("nameLine", nameLine);
-		contentValues.put("departureLine", departureLine);
-		contentValues.put("arrivalLine", arrivalLine);	
-		contentValues.put("typeLine", typeLine);
-		contentValues.put("iDStation", String.valueOf(iDStation));
-		db.insert("line", null, contentValues);
+		contentValues.put(STATION_COLUMN_IDSTATION, String.valueOf(idStation));
+		contentValues.put(STATION_COLUMN_NAMESTATION, nameStation);
+		contentValues.put(STATION_COLUMN_LATITUDE, latitude);	
+		contentValues.put(STATION_COLUMN_LONGITUDE, longitude);
+		contentValues.put(STATION_COLUMN_TYPE, typeLine);
+		db.insert(STATION_TABLE_NAME, null, contentValues);
 		return true;
 	}
-	public Cursor getData(int id){
-		SQLiteDatabase db = this.getReadableDatabase();
-		Cursor res =  db.rawQuery( "select * from line where idLine="+id+"", null );
-		return res;
+
+	public boolean insertLine(String nameLine, String departureLine, String arrivalLine, String typeLine, int idLine) {
+		SQLiteDatabase db = this.getWritableDatabase();
+		ContentValues contentValues = new ContentValues();
+		contentValues.put(LINE_COLUMN_NAMELINE, nameLine);
+		contentValues.put(LINE_COLUMN_DEPARTURELINE, departureLine);
+		contentValues.put(LINE_COLUMN_ARRIVALLINE, arrivalLine);	
+		contentValues.put(LINE_COLUMN_TYPELINE, typeLine);
+		contentValues.put(LINE_COLUMN_IDLINE, String.valueOf(idLine));
+		db.insert(LINE_TABLE_NAME, null, contentValues);
+		return true;
 	}
-	public int numberOfRows(){
+	
+	public int numberOfRowsTableLine(){
 		SQLiteDatabase db = this.getReadableDatabase();
 		int numRows = (int) DatabaseUtils.queryNumEntries(db, LINE_TABLE_NAME);
 		return numRows;
 	}
-	public boolean updateLine (Integer id,String nameLine, String departureLine, String arrivalLine, String typeLine,integer iDStation)
-	{
-		SQLiteDatabase db = this.getWritableDatabase();
-		ContentValues contentValues = new ContentValues();
-		contentValues.put("nameLine", nameLine);
-		contentValues.put("departureLine", departureLine);
-		contentValues.put("arrivalLine", arrivalLine);	
-		contentValues.put("typeLine", typeLine);
-		contentValues.put("iDStation", String.valueOf(iDStation));
-		db.update("line", contentValues, "id = ? ", new String[] { Integer.toString(id) } );
-		return true;
-	}
-
-	public Integer deleteLine(Integer id) {
-		SQLiteDatabase db = this.getWritableDatabase();
-		return db.delete("line", 
-				"id = ? ", 
-				new String[] { Integer.toString(id) });
+	
+	public int numberOfRowsTableStation(){
+		SQLiteDatabase db = this.getReadableDatabase();
+		int numRows = (int) DatabaseUtils.queryNumEntries(db, STATION_TABLE_NAME);
+		return numRows;
 	}
 
 	public void purgeLineTable() {

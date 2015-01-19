@@ -15,8 +15,12 @@
     <string name="rer">RER</string>
     <string name="settings">SETTINGS</string>
 
+    <!-- Settings -->
     <string name="purgeData">Purge data</string>
     <string name="loadData">Load data</string>
+    <string name="waitTitle">Please wait...</string>
+    <string name="waitDescriptionPurge">Database cleaning</string>
+    <string name="waitDescriptionLoad">Database filling with RATP data (CSV files)</string>
     
     <!-- Errors -->
     <string name="err_loading_view">Error while trying to load a view.</string>
@@ -31,8 +35,12 @@
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_station">StationActivity</string>
     
+    <!-- Add Station -->
+    <string name="titleAddStation">New station</string>
+    
     <!-- Stations -->
     <string name="fieldStationID">ID</string>
+    <string name="fieldStationLine">Line</string>
     <string name="fieldStationName">Name</string>
     <string name="fieldStationLatitude">Latitude</string>
     <string name="fieldStationLongitude">Longitude</string>
@@ -42,5 +50,10 @@
     <string name="msgDelete">Are you sure you want to delete this station ?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="msgUpdateOK">Station has been updated</string>
+    <string name="msgUpdateError">Error while updating this station</string>
+    <string name="msgInsertOK">Station has been added</string>
+    <string name="msgInsertError">Error while adding new station</string>
+    <string name="stationAddNew">Add new station</string>
 
 </resources>

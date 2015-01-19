@@ -142,7 +142,7 @@ public class LineStationsActivity extends Activity {
 		btAddStation.setOnClickListener(new View.OnClickListener() {
 			//@Override
 			public void onClick(View v) {
-				Utilities.openView(LineStationsActivity.this, AddStationActivity.class);
+				Utilities.openView(LineStationsActivity.this, AddStationActivity.class, type, line);
 			}        
 		});
 	}

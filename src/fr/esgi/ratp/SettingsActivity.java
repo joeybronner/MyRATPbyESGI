@@ -47,7 +47,7 @@ public class SettingsActivity extends Activity {
 		button.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				final ProgressDialog progressDialog = ProgressDialog.show(SettingsActivity.this, "Veuillez patienter...", "Chargement des lignes et stations à partir du fichier RATP", false);
+				final ProgressDialog progressDialog = ProgressDialog.show(SettingsActivity.this, getResources().getString(R.string.waitTitle), getResources().getString(R.string.waitDescriptionPurge), false);
 				progressDialog.setCancelable(false);
 				new Thread(new Runnable() {
 					@Override
@@ -65,7 +65,7 @@ public class SettingsActivity extends Activity {
 		btLoad.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				final ProgressDialog progressDialog = ProgressDialog.show(SettingsActivity.this, "Veuillez patienter...", "Chargement des lignes et stations à partir du fichier RATP", false);
+				final ProgressDialog progressDialog = ProgressDialog.show(SettingsActivity.this, getResources().getString(R.string.waitTitle), getResources().getString(R.string.waitDescriptionLoad), false);
 				progressDialog.setCancelable(false);
 				new Thread(new Runnable() {
 					@Override

@@ -138,7 +138,7 @@ public class DataBaseOperations extends SQLiteOpenHelper {
 		}
 		return s;
 	}
-	
+
 	public void deleteStation (Integer id) {
 		SQLiteDatabase db = this.getWritableDatabase();
 		db.delete(STATION_TABLE_NAME, STATION_COLUMN_IDSTATION + " = ? ", new String[] { Integer.toString(id) });
@@ -178,6 +178,19 @@ public class DataBaseOperations extends SQLiteOpenHelper {
 			}
 		}
 		return stations;
+	}
+
+	public boolean isStationIDUnique(int id) {
+		SQLiteDatabase db = this.getReadableDatabase();
+		Cursor res =  db.rawQuery("SELECT " + STATION_COLUMN_IDSTATION +
+				" FROM " + STATION_TABLE_NAME +
+				" WHERE " + STATION_COLUMN_IDSTATION + "='" + id + "'", 
+				null );
+		if (res.getCount()>0) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 	public ArrayList<Line> getAllLinesByType(String type)

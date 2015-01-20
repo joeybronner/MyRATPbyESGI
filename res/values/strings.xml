@@ -55,5 +55,7 @@
     <string name="msgInsertOK">Station has been added</string>
     <string name="msgInsertError">Error while adding new station</string>
     <string name="stationAddNew">Add new station</string>
-
+	<string name="msgErrorFieldsNotCompleted">You must complete all fields</string>
+	<string name="msgErrorStationExists">This station already exists</string>
+	
 </resources>

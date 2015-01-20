@@ -130,7 +130,6 @@
         android:layout_marginTop="10dp"
         android:layout_toRightOf="@+id/tvNewStationName"
         android:ems="10"
-        android:enabled="false"
         android:inputType="text"
         android:textColor="@color/white" />
 
@@ -156,7 +155,6 @@
         android:layout_marginTop="10dp"
         android:layout_toRightOf="@+id/tvNewStationLocalisation"
         android:ems="10"
-        android:enabled="false"
         android:inputType="text"
         android:textColor="@color/white" />
 
@@ -182,7 +180,6 @@
         android:layout_marginTop="10dp"
         android:layout_toRightOf="@+id/tvNewStationLatitude"
         android:ems="10"
-        android:enabled="false"
         android:inputType="text"
         android:textColor="@color/white" />
 
@@ -208,7 +205,6 @@
         android:layout_marginTop="10dp"
         android:layout_toRightOf="@+id/tvNewStationLongitude"
         android:ems="10"
-        android:enabled="false"
         android:inputType="text"
         android:textColor="@color/white" />
 

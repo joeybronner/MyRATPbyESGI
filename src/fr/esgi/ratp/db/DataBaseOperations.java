@@ -123,8 +123,8 @@ public class DataBaseOperations extends SQLiteOpenHelper {
 		SQLiteDatabase db = this.getReadableDatabase();
 		Cursor res =  db.rawQuery("SELECT * " +
 				" FROM " + STATION_TABLE_NAME +
-				" WHERE " + STATION_COLUMN_NAMESTATION + "='" + name + "'" +
-				" AND " + STATION_COLUMN_TYPE + "='" + type + "'", 
+				" WHERE " + STATION_COLUMN_NAMESTATION + "=\"" + name + "\"" +
+				" AND " + STATION_COLUMN_TYPE + "=\"" + type + "\"", 
 				null );
 		res.moveToFirst();
 		while(res.isAfterLast() == false) {
@@ -150,8 +150,8 @@ public class DataBaseOperations extends SQLiteOpenHelper {
 		SQLiteDatabase db = this.getReadableDatabase();
 		Cursor res =  db.rawQuery("SELECT " + LINE_COLUMN_IDLINE +
 				" FROM " + LINE_TABLE_NAME +
-				" WHERE " + LINE_COLUMN_NAMELINE + "='" + line + "'" +
-				" AND " + LINE_COLUMN_TYPELINE + "='" + type + "'", 
+				" WHERE " + LINE_COLUMN_NAMELINE + "=\"" + line + "\"" +
+				" AND " + LINE_COLUMN_TYPELINE + "=\"" + type + "\"", 
 				null );
 		res.moveToFirst();
 		while(res.isAfterLast() == false){
@@ -164,7 +164,7 @@ public class DataBaseOperations extends SQLiteOpenHelper {
 		for (Station s : stations) {
 			Cursor res2 =  db.rawQuery("SELECT * " +
 					" FROM " + STATION_TABLE_NAME +
-					" WHERE " + STATION_COLUMN_IDSTATION + "='" + s.getIDStation() + "'", 
+					" WHERE " + STATION_COLUMN_IDSTATION + "=\"" + s.getIDStation() + "\"", 
 					null );
 			res2.moveToFirst();
 			while(res2.isAfterLast() == false) {
@@ -184,7 +184,7 @@ public class DataBaseOperations extends SQLiteOpenHelper {
 		SQLiteDatabase db = this.getReadableDatabase();
 		Cursor res =  db.rawQuery("SELECT " + STATION_COLUMN_IDSTATION +
 				" FROM " + STATION_TABLE_NAME +
-				" WHERE " + STATION_COLUMN_IDSTATION + "='" + id + "'", 
+				" WHERE " + STATION_COLUMN_IDSTATION + "=\"" + id + "\"", 
 				null );
 		if (res.getCount()>0) {
 			return false;
@@ -199,7 +199,7 @@ public class DataBaseOperations extends SQLiteOpenHelper {
 		SQLiteDatabase db = this.getReadableDatabase();
 		Cursor res =  db.rawQuery("SELECT DISTINCT " + LINE_COLUMN_NAMELINE +
 				" FROM " + LINE_TABLE_NAME +
-				" WHERE " + LINE_COLUMN_TYPELINE + "='" + type + "'", 
+				" WHERE " + LINE_COLUMN_TYPELINE + "=\"" + type + "\"", 
 				null );
 		res.moveToFirst();
 		while(res.isAfterLast() == false){

@@ -65,13 +65,13 @@ public class LinesActivity extends Activity {
 		//sort integer value 
 		sort(allLinesInteger);
 		for (int j=0;j<allLinesInteger.length;j++){
-			allLines[j] = type+" "+allLinesInteger[j];
+			allLines[j] = "Ligne "+allLinesInteger[j];
 		}
 		// sort string value 
 		Arrays.sort(allLinesString);
 	
 		for (int h=0;h<lines.size()-allLinesInteger.length;h++){
-			allLines[h+allLinesInteger.length] = type+" "+allLinesString[h];
+			allLines[h+allLinesInteger.length] = "Ligne "+allLinesString[h];
 		}
 		// Change Title content
 		TextView tvTitle = (TextView) findViewById(R.id.tvTitle);

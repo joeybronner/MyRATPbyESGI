@@ -1,6 +1,7 @@
 package fr.esgi.ratp;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -8,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -41,13 +43,36 @@ public class LinesActivity extends Activity {
 		// Load data from database
 		final DataBaseOperations db = new DataBaseOperations(this);
 		ArrayList<Line> lines = db.getAllLinesByType(type);
-		String[] allLines = new String[lines.size()];
 		int i = 0;
+		int k = 0;
+		int[] allLinesInteger=new int[numberInteger(lines)];
+		String[] allLines= new String[lines.size()];
+		String[] allLinesString = new String[lines.size()-numberInteger(lines)];
 		for (Line line : lines) {
-			allLines[i] = "Ligne " + line.getNameLine();
+			Log.d("value",line.getNameLine());
+			// all lines integer 
+			if (isInteger(line.getNameLine())==true){
+			allLinesInteger[i] = Integer.parseInt(line.getNameLine());
+			Log.d("i",String.valueOf(i));
 			i++;
+			}
+			// all lignes contains strings values
+			else {
+				allLinesString[k] = line.getNameLine();
+				k++;
+			}
 		}
-		
+		//sort integer value 
+		sort(allLinesInteger);
+		for (int j=0;j<allLinesInteger.length;j++){
+			allLines[j] = type+" "+allLinesInteger[j];
+		}
+		// sort string value 
+		Arrays.sort(allLinesString);
+	
+		for (int h=0;h<lines.size()-allLinesInteger.length;h++){
+			allLines[h+allLinesInteger.length] = type+" "+allLinesString[h];
+		}
 		// Change Title content
 		TextView tvTitle = (TextView) findViewById(R.id.tvTitle);
 		tvTitle.setText(type.toUpperCase());
@@ -66,7 +91,7 @@ public class LinesActivity extends Activity {
 		
 		// Load lines
 		listLine = (ListView) findViewById(R.id.listLine);
-
+		
 		// Assign adapter to ListView
 		adapter = new ArrayAdapter<String>(this, R.layout.textview_style, allLines);
 		listLine.setAdapter(adapter);
@@ -99,5 +124,48 @@ public class LinesActivity extends Activity {
 			}
 		});
 
+	}
+	private static boolean isInteger(String val) {
+		boolean state=true;
+	    byte[] bytes = val.getBytes();
+	    for (int i = 0; i < bytes.length; i++) {
+	        if (!Character.isDigit((char) bytes[i])) {
+	            state=false;
+	        }
+	    }
+	    return state;
+	}
+   private static int numberInteger(ArrayList<Line> lines)
+   {
+	   int numberInteger=0;
+	   for (Line line : lines) {
+			Log.d("value",line.getNameLine());
+			if (isInteger(line.getNameLine())==true){
+			
+			numberInteger++;
+			}
+		}
+	   return numberInteger;
+   }
+   public int[] sort(int[] table)
+	{
+		for(int i=0;i<table.length;i++)
+	    {
+			
+	        for(int j=i+1;j<table.length;j++)
+	        {
+	        	
+	        	 if(table[i]>table[j])
+	            {
+	                int temp=table[i];
+	                table[i]=table[j];
+	                table[j]=temp;
+	               // Log.d("essai",temp.replaceAll(" ", ""));
+	            }
+
+	        }
+	    }
+		return table;
+		
 	}
 }

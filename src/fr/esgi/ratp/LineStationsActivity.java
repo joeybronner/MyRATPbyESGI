@@ -1,6 +1,7 @@
 package fr.esgi.ratp;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import android.annotation.SuppressLint;
@@ -72,7 +73,7 @@ public class LineStationsActivity extends Activity {
 			allStations[i] = station.getNameStation();
 			i++;
 		}
-		
+		Arrays.sort(allStations);
 		// Remove null values
 		allStations = removeNullValues(allStations);
 

@@ -57,12 +57,16 @@ public class LineStationsActivity extends Activity {
 		ImageView ivType = (ImageView) findViewById(R.id.ivTypeLineStation);
 		if (type.equals("metro")) {
 			ivType.setImageResource(R.drawable.metro);
+			setActivityBackgroundColor(getResources().getColor(R.color.orange));
 		} else if (type.equals("rer")) {
 			ivType.setImageResource(R.drawable.rer);
+			setActivityBackgroundColor(getResources().getColor(R.color.black));
 		} else if (type.equals("tram")) {
 			ivType.setImageResource(R.drawable.tramway);
+			setActivityBackgroundColor(getResources().getColor(R.color.darkblue));
 		} else if (type.equals("bus")) {
 			ivType.setImageResource(R.drawable.bus);
+			setActivityBackgroundColor(getResources().getColor(R.color.green));
 		}
 
 		// Load data from database
@@ -157,5 +161,10 @@ public class LineStationsActivity extends Activity {
 			}
 		}
 		return list.toArray(new String[list.size()]);
+	}
+
+	public void setActivityBackgroundColor(int color) {
+		View view = this.getWindow().getDecorView();
+		view.setBackgroundColor(color);
 	}
 }

@@ -30,6 +30,22 @@ public class StationActivity extends Activity {
 		stationType = myIntent.getStringExtra("type");
 		stationLine = myIntent.getStringExtra("line");
 		stationName = myIntent.getStringExtra("station");
+		
+		final Button button = (Button) findViewById(R.id.btSave);
+		
+		if (stationType.equals("metro")) {
+			setActivityBackgroundColor(getResources().getColor(R.color.orange));
+			button.setBackgroundColor(getResources().getColor(R.color.darkorange));
+		} else if (stationType.equals("rer")) {
+			setActivityBackgroundColor(getResources().getColor(R.color.black));
+			button.setBackgroundColor(getResources().getColor(R.color.silver));
+		} else if (stationType.equals("tram")) {
+			setActivityBackgroundColor(getResources().getColor(R.color.darkblue));
+			button.setBackgroundColor(getResources().getColor(R.color.blue));
+		} else if (stationType.equals("bus")) {
+			setActivityBackgroundColor(getResources().getColor(R.color.green));
+			button.setBackgroundColor(getResources().getColor(R.color.lightgreen));
+		}
 
 		// Change Title content
 		TextView tvTitle = (TextView) findViewById(R.id.tvTitleStation);
@@ -62,7 +78,6 @@ public class StationActivity extends Activity {
 		etStationLongitude.setText(s.getLongitude());
 
 		// Button Save changes
-		final Button button = (Button) findViewById(R.id.btSave);
 		button.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -76,6 +91,11 @@ public class StationActivity extends Activity {
 
 			}
 		});
+	}
+	
+	public void setActivityBackgroundColor(int color) {
+		View view = this.getWindow().getDecorView();
+		view.setBackgroundColor(color);
 	}
 
 }

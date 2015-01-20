@@ -52,9 +52,9 @@ public class LinesActivity extends Activity {
 			Log.d("value",line.getNameLine());
 			// all lines integer 
 			if (isInteger(line.getNameLine())==true){
-			allLinesInteger[i] = Integer.parseInt(line.getNameLine());
-			Log.d("i",String.valueOf(i));
-			i++;
+				allLinesInteger[i] = Integer.parseInt(line.getNameLine());
+				Log.d("i",String.valueOf(i));
+				i++;
 			}
 			// all lignes contains strings values
 			else {
@@ -69,29 +69,33 @@ public class LinesActivity extends Activity {
 		}
 		// sort string value 
 		Arrays.sort(allLinesString);
-	
+
 		for (int h=0;h<lines.size()-allLinesInteger.length;h++){
 			allLines[h+allLinesInteger.length] = "Ligne "+allLinesString[h];
 		}
 		// Change Title content
 		TextView tvTitle = (TextView) findViewById(R.id.tvTitle);
 		tvTitle.setText(type.toUpperCase());
-		
+
 		// Change image
 		ImageView ivType = (ImageView) findViewById(R.id.ivType);
 		if (type.equals("metro")) {
 			ivType.setImageResource(R.drawable.metro);
+			setActivityBackgroundColor(getResources().getColor(R.color.orange));
 		} else if (type.equals("rer")) {
 			ivType.setImageResource(R.drawable.rer);
+			setActivityBackgroundColor(getResources().getColor(R.color.black));
 		} else if (type.equals("tram")) {
 			ivType.setImageResource(R.drawable.tramway);
+			setActivityBackgroundColor(getResources().getColor(R.color.darkblue));
 		} else if (type.equals("bus")) {
 			ivType.setImageResource(R.drawable.bus);
+			setActivityBackgroundColor(getResources().getColor(R.color.green));
 		}
-		
+
 		// Load lines
 		listLine = (ListView) findViewById(R.id.listLine);
-		
+
 		// Assign adapter to ListView
 		adapter = new ArrayAdapter<String>(this, R.layout.textview_style, allLines);
 		listLine.setAdapter(adapter);
@@ -127,45 +131,50 @@ public class LinesActivity extends Activity {
 	}
 	private static boolean isInteger(String val) {
 		boolean state=true;
-	    byte[] bytes = val.getBytes();
-	    for (int i = 0; i < bytes.length; i++) {
-	        if (!Character.isDigit((char) bytes[i])) {
-	            state=false;
-	        }
-	    }
-	    return state;
-	}
-   private static int numberInteger(ArrayList<Line> lines)
-   {
-	   int numberInteger=0;
-	   for (Line line : lines) {
-			Log.d("value",line.getNameLine());
-			if (isInteger(line.getNameLine())==true){
-			
-			numberInteger++;
+		byte[] bytes = val.getBytes();
+		for (int i = 0; i < bytes.length; i++) {
+			if (!Character.isDigit((char) bytes[i])) {
+				state=false;
 			}
 		}
-	   return numberInteger;
-   }
-   public int[] sort(int[] table)
+		return state;
+	}
+	private static int numberInteger(ArrayList<Line> lines)
+	{
+		int numberInteger=0;
+		for (Line line : lines) {
+			Log.d("value",line.getNameLine());
+			if (isInteger(line.getNameLine())==true){
+
+				numberInteger++;
+			}
+		}
+		return numberInteger;
+	}
+	public int[] sort(int[] table)
 	{
 		for(int i=0;i<table.length;i++)
-	    {
-			
-	        for(int j=i+1;j<table.length;j++)
-	        {
-	        	
-	        	 if(table[i]>table[j])
-	            {
-	                int temp=table[i];
-	                table[i]=table[j];
-	                table[j]=temp;
-	               // Log.d("essai",temp.replaceAll(" ", ""));
-	            }
+		{
 
-	        }
-	    }
+			for(int j=i+1;j<table.length;j++)
+			{
+
+				if(table[i]>table[j])
+				{
+					int temp=table[i];
+					table[i]=table[j];
+					table[j]=temp;
+					// Log.d("essai",temp.replaceAll(" ", ""));
+				}
+
+			}
+		}
 		return table;
-		
+
+	}
+
+	public void setActivityBackgroundColor(int color) {
+		View view = this.getWindow().getDecorView();
+		view.setBackgroundColor(color);
 	}
 }

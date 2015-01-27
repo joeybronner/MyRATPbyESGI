@@ -1,4 +1,4 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,28 +7,25 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="fr.esgi.ratp.SettingsActivity" >
+    tools:context="fr.esgi.ratp.SettingsActivity"
+    android:orientation="vertical" >
 
     <Button
         android:id="@+id/btPurgeData"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="75dp"
-        android:background="@drawable/purge"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:drawableLeft="@drawable/purge"
         android:text="@string/purgeData"
-        android:textColor="@color/darkred" />
+        android:textColor="@color/white" />
 
     <Button
         android:id="@+id/btLoadData"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_below="@+id/btPurgeData"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="75dp"
-        android:background="@drawable/load"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:drawableLeft="@drawable/load"
         android:text="@string/loadData"
-        android:textColor="@color/darkred" />
+        android:textColor="@color/white" />
 
-</RelativeLayout>
+</LinearLayout>

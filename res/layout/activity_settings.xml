@@ -16,19 +16,19 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="75dp"
-        android:textColor="@color/darkred"
         android:background="@drawable/purge"
-        android:text="@string/purgeData" />
+        android:text="@string/purgeData"
+        android:textColor="@color/darkred" />
 
     <Button
         android:id="@+id/btLoadData"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:textColor="@color/darkred"
-        android:layout_centerHorizontal="true"
         android:layout_below="@+id/btPurgeData"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="75dp"
         android:background="@drawable/load"
-        android:text="@string/loadData" />
+        android:text="@string/loadData"
+        android:textColor="@color/darkred" />
 
 </RelativeLayout>

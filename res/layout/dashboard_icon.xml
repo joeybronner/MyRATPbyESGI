@@ -10,7 +10,7 @@
     <ImageView
         android:id="@+id/dashboard_icon_img"
         android:layout_width="fill_parent"
-        android:layout_height="60.0dip"
+        android:layout_height="45.0dip"
         android:contentDescription="@string/nodescription"
         android:scaleType="fitCenter" />
 

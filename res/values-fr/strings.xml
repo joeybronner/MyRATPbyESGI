@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">MyRATPbyESGI</string>
+    <string name="action_settings">Paramètres</string>
+
+    <!-- Splash Screen -->
+    <string name="title_activity_splash_screen">MyRATPbyESGI</string>
+    <string name="splashscreencontentdescription">SplashScreen</string>
+
+    <!-- Home -->
+    <string name="underground">METRO</string>
+    <string name="bus">BUS</string>
+    <string name="tramway">TRAM</string>
+    <string name="rer">RER</string>
+    <string name="settings">PARAMETRES</string>
+
+    <!-- Settings -->
+    <string name="purgeData">Purger les données</string>
+    <string name="loadData">Charger les données</string>
+    <string name="waitTitle">Veuillez patienter&#8230;</string>
+    <string name="waitDescriptionPurge">Nettoyage de la base de données</string>
+    <string name="waitDescriptionLoad">Chargement des données RATP (fichier CSV)</string>
+    
+    <!-- Errors -->
+    <string name="err_loading_view">Erreur pendant le chargement de la vue.</string>
+    <string name="nodescription">pasdedescription.</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+    <string name="title_activity_lines">LinesActivity</string>
+
+    <!-- Lines -->
+    <string name="tvsearch">Recherche</string>
+    <string name="title_activity_line_stations">LineStationsActivity</string>
+    <string name="title_activity_add_station">AddStationActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_station">StationActivity</string>
+    
+    <!-- Add Station -->
+    <string name="titleAddStation">New station</string>
+    
+    <!-- Stations -->
+    <string name="fieldStationID">ID</string>
+    <string name="fieldStationLine">Ligne</string>
+    <string name="fieldStationName">Nom</string>
+    <string name="fieldStationLatitude">Latitude</string>
+    <string name="fieldStationLongitude">Longitude</string>
+    <string name="fieldStationLocalisation">Localisation</string>
+    <string name="fieldStationType">Type</string>
+    <string name="stationSave">Sauvegarder</string>
+    <string name="msgDelete">Êtes-vous sur de vouloir supprimer cette station ?</string>
+    <string name="yes">Oui</string>
+    <string name="no">Non</string>
+    <string name="msgUpdateOK">La station a été mise à jour</string>
+    <string name="msgUpdateError">Erreur pendant la mise à jour de la station</string>
+    <string name="msgInsertOK">La station a été ajoutée</string>
+    <string name="msgInsertError">Erreur pendant l\u0027ajout de la station</string>
+    <string name="stationAddNew">Ajouter une station</string>
+	<string name="msgErrorFieldsNotCompleted">Vous devez compléter tous les champs.</string>
+	<string name="msgErrorStationExists">Cette station existe déjà.</string>
+	
+</resources>

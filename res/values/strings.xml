@@ -18,7 +18,7 @@
     <!-- Settings -->
     <string name="purgeData">Purge data</string>
     <string name="loadData">Load data</string>
-    <string name="waitTitle">Please wait...</string>
+    <string name="waitTitle">Please wait&#8230;</string>
     <string name="waitDescriptionPurge">Database cleaning</string>
     <string name="waitDescriptionLoad">Database filling with RATP data (CSV files)</string>
     

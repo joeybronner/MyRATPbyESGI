@@ -71,12 +71,15 @@ public class LineStationsActivity extends Activity {
 
 		// Load data from database
 		ArrayList<Station> stations = db.getAllStationsByLine(type, line.substring(6));
-		String[] allStations = new String[stations.size()];
-		int i = 0;
+		ArrayList<String> allStationsAsList = new ArrayList<String>();
 		for (Station station : stations) {
-			allStations[i] = station.getNameStation();
-			i++;
+			try {
+				if (station.getNameStation()!=null && !station.getNameStation().equals("") && !station.getNameStation().isEmpty()) {
+					allStationsAsList.add(station.getNameStation());
+				}
+			} catch (Exception e) { /* Nothing */ }
 		}
+		String[] allStations = allStationsAsList.toArray(new String[allStationsAsList.size()]);
 		Arrays.sort(allStations);
 		// Remove null values
 		allStations = removeNullValues(allStations);

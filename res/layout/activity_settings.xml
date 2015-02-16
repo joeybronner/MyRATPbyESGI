@@ -12,6 +12,7 @@
 
     <Button
         android:id="@+id/btPurgeData"
+        android:padding="30dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
@@ -22,6 +23,7 @@
 
     <Button
         android:id="@+id/btLoadData"
+        android:padding="30dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"

@@ -100,11 +100,9 @@ public class MainActivity extends Activity implements OnItemClickListener
 			this.text = text;
 			this.map = map;
 		}
-
 	}
 
-	static class ImageAdapter extends BaseAdapter
-	{
+	static class ImageAdapter extends BaseAdapter {
 		private Context mContext;
 
 		public ImageAdapter(Context c) {
@@ -150,14 +148,12 @@ public class MainActivity extends Activity implements OnItemClickListener
 				holder.icon = (ImageView) v.findViewById(R.id.dashboard_icon_img);
 				v.setTag(holder);
 			}
-			else
-			{
+			else {
 				holder = (ViewHolder) v.getTag();
 			}
 
 			holder.icon.setImageResource(ICONS[position].imgId);
 			holder.text.setText(ICONS[position].text);
-
 			return v;
 		}
 	}

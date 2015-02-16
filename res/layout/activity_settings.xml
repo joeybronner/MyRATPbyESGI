@@ -16,6 +16,7 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:drawableLeft="@drawable/purge"
+        android:background="@null"
         android:text="@string/purgeData"
         android:textColor="@color/white" />
 
@@ -24,6 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
+        android:background="@null"
         android:drawableLeft="@drawable/load"
         android:text="@string/loadData"
         android:textColor="@color/white" />

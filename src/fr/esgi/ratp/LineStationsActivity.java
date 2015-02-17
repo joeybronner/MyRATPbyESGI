@@ -32,6 +32,8 @@ public class LineStationsActivity extends Activity {
 	ArrayAdapter<String> adapter;
 	String type, line, station;
 	int selectedPosition;
+	ImageView ivType;
+	TextView tvTitle;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -50,24 +52,12 @@ public class LineStationsActivity extends Activity {
 		line = myIntent.getStringExtra("line");
 
 		// Change Title content
-		TextView tvTitle = (TextView) findViewById(R.id.tvTitleWithStation);
+		tvTitle = (TextView) findViewById(R.id.tvTitleWithStation);
 		tvTitle.setText(type.toUpperCase() + " > " + line);
 
 		// Change image
-		ImageView ivType = (ImageView) findViewById(R.id.ivTypeLineStation);
-		if (type.equals("metro")) {
-			ivType.setImageResource(R.drawable.metro);
-			setActivityBackgroundColor(getResources().getColor(R.color.orange));
-		} else if (type.equals("rer")) {
-			ivType.setImageResource(R.drawable.rer);
-			setActivityBackgroundColor(getResources().getColor(R.color.black));
-		} else if (type.equals("tram")) {
-			ivType.setImageResource(R.drawable.tramway);
-			setActivityBackgroundColor(getResources().getColor(R.color.darkblue));
-		} else if (type.equals("bus")) {
-			ivType.setImageResource(R.drawable.bus);
-			setActivityBackgroundColor(getResources().getColor(R.color.green));
-		}
+		ivType = (ImageView) findViewById(R.id.ivTypeLineStation);
+		setImageOfTransportType();
 
 		// Load data from database
 		ArrayList<Station> stations = db.getAllStationsByLine(type, line.substring(6));
@@ -104,6 +94,7 @@ public class LineStationsActivity extends Activity {
 
 		// ListView Item LONGClick Listener
 		listStation.setOnItemLongClickListener(new OnItemLongClickListener() {
+			@Override
 			public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int pos, long id) {
 
 				selectedPosition = pos;
@@ -149,10 +140,27 @@ public class LineStationsActivity extends Activity {
 		ImageView btAddStation = (ImageView) findViewById(R.id.btAddStation);
 		btAddStation.setOnClickListener(new View.OnClickListener() {
 			//@Override
+			@Override
 			public void onClick(View v) {
 				Utilities.openView(LineStationsActivity.this, AddStationActivity.class, type, line);
 			}        
 		});
+	}
+	
+	private void setImageOfTransportType() {
+		if (type.equals("metro")) {
+			ivType.setImageResource(R.drawable.metro);
+			setActivityBackgroundColor(getResources().getColor(R.color.orange));
+		} else if (type.equals("rer")) {
+			ivType.setImageResource(R.drawable.rer);
+			setActivityBackgroundColor(getResources().getColor(R.color.black));
+		} else if (type.equals("tram")) {
+			ivType.setImageResource(R.drawable.tramway);
+			setActivityBackgroundColor(getResources().getColor(R.color.darkblue));
+		} else if (type.equals("bus")) {
+			ivType.setImageResource(R.drawable.bus);
+			setActivityBackgroundColor(getResources().getColor(R.color.green));
+		}
 	}
 
 	private String[] removeNullValues(String[] firstArray) {

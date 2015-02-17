@@ -22,7 +22,6 @@ public class SettingsActivity extends Activity {
 	String arrivalLine = "";
 	String typeLine = "";
 
-
 	// Station
 	int idStation = 0;
 	String nameStation = "";
@@ -33,7 +32,10 @@ public class SettingsActivity extends Activity {
 
 	// Database
 	final DataBaseOperations db = new DataBaseOperations(this);
-
+	
+	// UI Elements
+	Button btPurge, btLoad;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -43,8 +45,8 @@ public class SettingsActivity extends Activity {
 		getActionBar().hide();
 
 		// Button Purge Data
-		final Button button = (Button) findViewById(R.id.btPurgeData);
-		button.setOnClickListener(new View.OnClickListener() {
+		btPurge = (Button) findViewById(R.id.btPurgeData);
+		btPurge.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				final ProgressDialog progressDialog = ProgressDialog.show(SettingsActivity.this, getResources().getString(R.string.waitTitle), getResources().getString(R.string.waitDescriptionPurge), false);
@@ -61,7 +63,7 @@ public class SettingsActivity extends Activity {
 		});
 		
 		// Button Load Data
-		final Button btLoad = (Button) findViewById(R.id.btLoadData);
+		btLoad = (Button) findViewById(R.id.btLoadData);
 		btLoad.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -96,9 +98,7 @@ public class SettingsActivity extends Activity {
 				db.insertStation(idStation, nameStation, localisation, typeLine, latitude, longitude);
 			}
 			fichierStation.close();
-		} catch (Exception e) {
-			//TODO: Write exception.
-		}
+		} catch (Exception e) { /* Nothing */ }
 	}
 
 	private void loadLines(final DataBaseOperations db) {
@@ -147,8 +147,6 @@ public class SettingsActivity extends Activity {
 
 			}
 			fichierLigne.close();
-		} catch (Exception e) {
-
-		}
+		} catch (Exception e) { /* Nothing */ }
 	}
 }

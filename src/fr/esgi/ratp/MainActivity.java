@@ -24,16 +24,7 @@ import android.widget.Toast;
 public class MainActivity extends Activity implements OnItemClickListener
 {
 	private String _errormsg;
-
-	final static LauncherIcon[] ICONS =
-		{
-		// LauncherIcon (<icon>, <text>, <id>)
-		new LauncherIcon(R.drawable.metro, LaunchApp.underground, "metro"),
-		new LauncherIcon(R.drawable.bus, LaunchApp.bus, "bus"),
-		new LauncherIcon(R.drawable.tramway, LaunchApp.tramway, "tram"),
-		new LauncherIcon(R.drawable.rer, LaunchApp.rer, "rer"),
-		new LauncherIcon(R.drawable.settings, LaunchApp.settings, "settings"),
-		};
+	GridView gridview;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState)
@@ -41,7 +32,7 @@ public class MainActivity extends Activity implements OnItemClickListener
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		GridView gridview = (GridView) MainActivity.this.findViewById(R.id.dashboard_grid);
+		gridview = (GridView) MainActivity.this.findViewById(R.id.dashboard_grid);
 		gridview.setAdapter(new ImageAdapter(this));
 		gridview.setOnItemClickListener(this);
 
@@ -52,11 +43,9 @@ public class MainActivity extends Activity implements OnItemClickListener
 		Constants.tf = Typeface.createFromAsset(this.getAssets(),"fonts/OpenSans-Light.ttf");
 
 		// Hack to disable GridView scrolling
-		gridview.setOnTouchListener(new OnTouchListener()
-		{
+		gridview.setOnTouchListener(new OnTouchListener() {
 			@SuppressLint("ClickableViewAccessibility") @Override
-			public boolean onTouch(View v, MotionEvent event)
-			{
+			public boolean onTouch(View v, MotionEvent event) {
 				return event.getAction() == MotionEvent.ACTION_MOVE;
 			}
 		});
@@ -86,8 +75,17 @@ public class MainActivity extends Activity implements OnItemClickListener
 			Toast toast = Toast.makeText(this,_errormsg, Toast.LENGTH_LONG);
 			toast.show();
 		}
-
 	}
+	
+	// Custom Grid View ---
+	
+	final static LauncherIcon[] ICONS = {
+		new LauncherIcon(R.drawable.metro, LaunchApp.underground, "metro"),
+		new LauncherIcon(R.drawable.bus, LaunchApp.bus, "bus"),
+		new LauncherIcon(R.drawable.tramway, LaunchApp.tramway, "tram"),
+		new LauncherIcon(R.drawable.rer, LaunchApp.rer, "rer"),
+		new LauncherIcon(R.drawable.settings, LaunchApp.settings, "settings"),
+	};
 
 	static class LauncherIcon {
 		final String text;
@@ -120,25 +118,21 @@ public class MainActivity extends Activity implements OnItemClickListener
 		}
 
 		@Override
-		public long getItemId(int position)
-		{
+		public long getItemId(int position) {
 			return 0;
 		}
 
-		static class ViewHolder
-		{
+		static class ViewHolder {
 			public ImageView icon;
 			public TextView text;
 		}
 
 		// Create a new ImageView for each item referenced by the Adapter
 		@SuppressLint("InflateParams") @Override
-		public View getView(int position, View convertView, ViewGroup parent)
-		{
+		public View getView(int position, View convertView, ViewGroup parent) {
 			View v = convertView;
 			ViewHolder holder;
-			if (v == null)
-			{
+			if (v == null) {
 				LayoutInflater vi = (LayoutInflater) mContext.getSystemService(
 						Context.LAYOUT_INFLATER_SERVICE);
 

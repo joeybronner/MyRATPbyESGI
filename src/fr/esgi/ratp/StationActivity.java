@@ -16,7 +16,10 @@ import fr.esgi.ratp.objects.Station;
 public class StationActivity extends Activity {
 
 	String stationID, stationName, stationLatitude, stationLongitude, stationType, stationLine, stationLocalisation;
-
+	Button btSave;
+	TextView tvTitle;
+	DataBaseOperations db;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -31,28 +34,17 @@ public class StationActivity extends Activity {
 		stationLine = myIntent.getStringExtra("line");
 		stationName = myIntent.getStringExtra("station");
 		
-		final Button button = (Button) findViewById(R.id.btSave);
+		btSave = (Button) findViewById(R.id.btSave);
 		
-		if (stationType.equals("metro")) {
-			setActivityBackgroundColor(getResources().getColor(R.color.orange));
-			button.setBackgroundColor(getResources().getColor(R.color.darkorange));
-		} else if (stationType.equals("rer")) {
-			setActivityBackgroundColor(getResources().getColor(R.color.black));
-			button.setBackgroundColor(getResources().getColor(R.color.silver));
-		} else if (stationType.equals("tram")) {
-			setActivityBackgroundColor(getResources().getColor(R.color.darkblue));
-			button.setBackgroundColor(getResources().getColor(R.color.blue));
-		} else if (stationType.equals("bus")) {
-			setActivityBackgroundColor(getResources().getColor(R.color.green));
-			button.setBackgroundColor(getResources().getColor(R.color.lightgreen));
-		}
+		// Set Image following the type of transport
+		setImageOfTransportType();
 
 		// Change Title content
-		TextView tvTitle = (TextView) findViewById(R.id.tvTitleStation);
+		tvTitle = (TextView) findViewById(R.id.tvTitleStation);
 		tvTitle.setText(stationName.toUpperCase());
 
 		// Load data
-		final DataBaseOperations db = new DataBaseOperations(this);
+		db = new DataBaseOperations(this);
 		Station s = db.getStation(stationName, stationType);
 
 		EditText etStationID = (EditText) findViewById(R.id.etStationID);
@@ -78,7 +70,7 @@ public class StationActivity extends Activity {
 		etStationLongitude.setText(s.getLongitude());
 
 		// Button Save changes
-		button.setOnClickListener(new View.OnClickListener() {
+		btSave.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				try {
@@ -91,6 +83,22 @@ public class StationActivity extends Activity {
 
 			}
 		});
+	}
+	
+	private void setImageOfTransportType() {
+		if (stationType.equals("metro")) {
+			setActivityBackgroundColor(getResources().getColor(R.color.orange));
+			btSave.setBackgroundColor(getResources().getColor(R.color.darkorange));
+		} else if (stationType.equals("rer")) {
+			setActivityBackgroundColor(getResources().getColor(R.color.black));
+			btSave.setBackgroundColor(getResources().getColor(R.color.silver));
+		} else if (stationType.equals("tram")) {
+			setActivityBackgroundColor(getResources().getColor(R.color.darkblue));
+			btSave.setBackgroundColor(getResources().getColor(R.color.blue));
+		} else if (stationType.equals("bus")) {
+			setActivityBackgroundColor(getResources().getColor(R.color.green));
+			btSave.setBackgroundColor(getResources().getColor(R.color.lightgreen));
+		}
 	}
 	
 	public void setActivityBackgroundColor(int color) {

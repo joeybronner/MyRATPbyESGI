@@ -7,7 +7,6 @@ import java.util.List;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Fragment;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
@@ -50,9 +49,9 @@ public class LineStationsActivity extends Activity {
 		type = myIntent.getStringExtra("type");
 		line = myIntent.getStringExtra("line");
 		
-		// Actionbar Title
-		setTitle(type.toUpperCase() + " > " + line);
+		// Background style
 		setImageOfTransportType();
+		getActionBar().setTitle(type.toUpperCase() + " > " + line);
 
 		// Load data from database
 		ArrayList<Station> stations = db.getAllStationsByLine(type, line.substring(6));
@@ -133,6 +132,7 @@ public class LineStationsActivity extends Activity {
 		});
 	}
 	
+	/* ActionBar items */
 	public boolean onCreateOptionsMenu(Menu menu) {
 	    // Inflate the menu items for use in the action bar
 	    MenuInflater inflater = getMenuInflater();
@@ -172,7 +172,6 @@ public class LineStationsActivity extends Activity {
 		}
 	}
 
-
 	private String[] removeNullValues(String[] firstArray) {
 		List<String> list = new ArrayList<String>();
 
@@ -184,9 +183,8 @@ public class LineStationsActivity extends Activity {
 		return list.toArray(new String[list.size()]);
 	}
 
-	private void setActivityBackgroundColor(int color) {
-		Fragment currentFragment = this.getFragmentManager().findFragmentById(R.id.fragment_lines);
-		View view = currentFragment.getView();
+	public void setActivityBackgroundColor(int color) {
+		View view = this.getWindow().getDecorView();
 		view.setBackgroundColor(color);
 	}
 }

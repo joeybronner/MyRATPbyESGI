@@ -4,19 +4,35 @@
     android:layout_height="match_parent"
     android:fillViewport="true" >
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/darkgray"
-        android:orientation="vertical"
+        android:descendantFocusability="beforeDescendants"
+        android:focusableInTouchMode="true"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
         tools:context="fr.esgi.ratp.LineStationsActivity" >
 
-        <fragment
-            android:id="@+id/fragment_lines"
-            android:name="fr.esgi.ratp.fragments.FragmentLinesStations"
+        <EditText
+            android:id="@+id/etSearchStation"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:hint="@string/tvsearch"
+            android:textColor="@color/white"
+            android:textColorHint="@color/gray" >
+        </EditText>
+
+        <ListView
+            android:id="@+id/listStation"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
-    </LinearLayout>
+            android:layout_height="wrap_content"
+            android:layout_below="@id/etSearchStation"
+            android:layout_marginTop="10dp" >
+        </ListView>
+    </RelativeLayout>
 
 </ScrollView>

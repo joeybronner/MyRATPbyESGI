@@ -3,7 +3,9 @@ package fr.esgi.ratp;
 import java.util.Random;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,6 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 import fr.esgi.ratp.db.DataBaseOperations;
 import fr.esgi.ratp.objects.Station;
+import fr.esgi.ratp.utils.Constants;
 
 public class AddStationActivity extends Activity {
 
@@ -27,13 +30,15 @@ public class AddStationActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_station);
 
-		// Hide action bar
-		getActionBar().hide();
-
 		// Load type of lines
+		try {
 		Intent myIntent = getIntent();
 		type = myIntent.getStringExtra("type");
 		line = myIntent.getStringExtra("line");
+		} catch (Exception e) {
+			type = Constants.TYPE;
+			line = Constants.LINE;
+		}
 
 		bttAdd = (Button) findViewById(R.id.btAddNewStation);
 
@@ -41,6 +46,10 @@ public class AddStationActivity extends Activity {
 
 		// Database
 		db = new DataBaseOperations(this);
+		
+		// Actionbar Title
+		setTitle(getResources().getString(R.string.titleAddStation));
+		getActionBar().setIcon(R.drawable.station);
 
 		// Create unique ID
 		newID = generateNewID();
@@ -134,21 +143,26 @@ public class AddStationActivity extends Activity {
 	private void setActivityAndButtonColors() {
 		if (type.equals("metro")) {
 			setActivityBackgroundColor(getResources().getColor(R.color.orange));
-			bttAdd.setBackgroundColor(getResources().getColor(R.color.darkorange));
+			bttAdd.setBackgroundColor(getResources().getColor(R.color.darkorange));;
+			getActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.orange)));
 		} else if (type.equals("rer")) {
 			setActivityBackgroundColor(getResources().getColor(R.color.black));
 			bttAdd.setBackgroundColor(getResources().getColor(R.color.silver));
+			getActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.black)));
 		} else if (type.equals("tram")) {
 			setActivityBackgroundColor(getResources().getColor(R.color.darkblue));
 			bttAdd.setBackgroundColor(getResources().getColor(R.color.blue));
+			getActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.darkblue)));
 		} else if (type.equals("bus")) {
 			setActivityBackgroundColor(getResources().getColor(R.color.green));
 			bttAdd.setBackgroundColor(getResources().getColor(R.color.lightgreen));
+			getActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.green)));
 		}
 	}
 
 	private void setActivityBackgroundColor(int color) {
-		View view = this.getWindow().getDecorView();
+		Fragment currentFragment = this.getFragmentManager().findFragmentById(R.id.fragment_lines);
+		View view = currentFragment.getView();
 		view.setBackgroundColor(color);
 	}
 

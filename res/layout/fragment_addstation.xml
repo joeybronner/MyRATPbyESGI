@@ -1,0 +1,200 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="fr.esgi.ratp.AddStationActivity" >
+
+    <!-- ID -->
+
+    <TextView
+        android:id="@+id/tvNewStationID"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/etNewStationID"
+        android:layout_alignTop="@+id/etNewStationID"
+        android:layout_below="@+id/tvTitleNewStation"
+        android:gravity="center_vertical"
+        android:text="@string/fieldStationID"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/etNewStationID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ivNewStation"
+        android:layout_marginTop="20dp"
+        android:layout_toRightOf="@+id/tvNewStationID"
+        android:ems="10"
+        android:enabled="false"
+        android:inputType="text"
+        android:textColor="@color/white" />
+
+    <!-- Line -->
+
+    <TextView
+        android:id="@+id/tvNewStationLine"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/etNewStationLine"
+        android:layout_alignTop="@+id/etNewStationLine"
+        android:layout_below="@+id/etNewStationID"
+        android:gravity="center_vertical"
+        android:text="@string/fieldStationLine"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/etNewStationLine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/etNewStationID"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@+id/tvNewStationLine"
+        android:ems="10"
+        android:enabled="false"
+        android:inputType="text"
+        android:textColor="@color/white" />
+
+    <!-- Type -->
+
+    <TextView
+        android:id="@+id/tvNewStationType"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/etNewStationType"
+        android:layout_alignTop="@+id/etNewStationType"
+        android:layout_below="@+id/etNewStationLine"
+        android:gravity="center_vertical"
+        android:text="@string/fieldStationType"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/etNewStationType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/etNewStationLine"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@+id/tvNewStationType"
+        android:ems="10"
+        android:enabled="false"
+        android:inputType="text"
+        android:textColor="@color/white" />
+
+    <!-- Name -->
+
+    <TextView
+        android:id="@+id/tvNewStationName"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/etNewStationName"
+        android:layout_alignTop="@+id/etNewStationName"
+        android:layout_below="@+id/etNewStationType"
+        android:gravity="center_vertical"
+        android:text="@string/fieldStationName"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/etNewStationName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/etNewStationType"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@+id/tvNewStationName"
+        android:ems="10"
+        android:inputType="text"
+        android:textColor="@color/white" />
+
+    <!-- Localisation -->
+
+    <TextView
+        android:id="@+id/tvNewStationLocalisation"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/etNewStationLocalisation"
+        android:layout_alignTop="@+id/etNewStationLocalisation"
+        android:layout_below="@+id/etNewStationName"
+        android:gravity="center_vertical"
+        android:text="@string/fieldStationLocalisation"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/etNewStationLocalisation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/etNewStationName"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@+id/tvNewStationLocalisation"
+        android:ems="10"
+        android:inputType="text"
+        android:textColor="@color/white" />
+
+    <!-- Latitude -->
+
+    <TextView
+        android:id="@+id/tvNewStationLatitude"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/etNewStationLatitude"
+        android:layout_alignTop="@+id/etNewStationLatitude"
+        android:layout_below="@+id/etNewStationLocalisation"
+        android:gravity="center_vertical"
+        android:text="@string/fieldStationLatitude"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/etNewStationLatitude"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/etNewStationLocalisation"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@+id/tvNewStationLatitude"
+        android:ems="10"
+        android:inputType="text"
+        android:textColor="@color/white" />
+
+    <!-- Longitude -->
+
+    <TextView
+        android:id="@+id/tvNewStationLongitude"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/etNewStationLongitude"
+        android:layout_alignTop="@+id/etNewStationLongitude"
+        android:layout_below="@+id/etNewStationLatitude"
+        android:gravity="center_vertical"
+        android:text="@string/fieldStationLongitude"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/etNewStationLongitude"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/etNewStationLatitude"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@+id/tvNewStationLongitude"
+        android:ems="10"
+        android:inputType="text"
+        android:textColor="@color/white" />
+
+    <Button
+        android:id="@+id/btAddNewStation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/etNewStationLongitude"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:padding="10dp"
+        android:text="@string/stationAddNew"
+        android:textColor="@color/white" />
+
+</RelativeLayout>

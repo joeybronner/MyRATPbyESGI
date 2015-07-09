@@ -56,18 +56,23 @@ public class MainActivity extends Activity implements OnItemClickListener
 		// Here, redirect to the good view
 		String icon_selected = ICONS[position].map;
 		if (icon_selected.equals("metro")) {
+			Constants.TYPE = "metro";
 			Utilities.openView(this, LinesActivity.class, "metro");
 		}
 		else if (icon_selected.equals("bus")) {
+			Constants.TYPE = "bus";
 			Utilities.openView(this, LinesActivity.class, "bus");
 		}
 		else if (icon_selected.equals("tram")) {
+			Constants.TYPE = "tram";
 			Utilities.openView(this, LinesActivity.class, "tram");
 		}
 		else if (icon_selected.equals("rer")) {
+			Constants.TYPE = "rer";
 			Utilities.openView(this, LinesActivity.class, "rer");
 		}
 		else if (icon_selected.equals("settings")) {
+			Constants.TYPE = "settings";
 			Utilities.openView(this, SettingsActivity.class);
 		}
 		else {

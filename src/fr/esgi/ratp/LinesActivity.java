@@ -5,7 +5,9 @@ import java.util.Arrays;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.Fragment;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -20,6 +22,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import fr.esgi.ratp.db.DataBaseOperations;
 import fr.esgi.ratp.objects.Line;
+import fr.esgi.ratp.utils.Constants;
 import fr.esgi.ratp.utils.Utilities;
 
 public class LinesActivity extends Activity {
@@ -40,12 +43,13 @@ public class LinesActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_lines);
 
-		// Hide Action Bar
-		getActionBar().hide();
-
 		// Load type of lines
-		Intent myIntent = getIntent();
-		type = myIntent.getStringExtra("type");
+		try {
+			Intent myIntent = getIntent();
+			type = myIntent.getStringExtra("type");
+		} catch (Exception e) {
+			type = Constants.TYPE;
+		}
 
 		// Load data from database
 		db = new DataBaseOperations(this);
@@ -58,13 +62,11 @@ public class LinesActivity extends Activity {
 		// Sort Values
 		sortLines(lines);
 		
-		// Change Title content
-		tvTitle = (TextView) findViewById(R.id.tvTitle);
-		tvTitle.setText(type.toUpperCase());
-
-		// Change image
-		ivType = (ImageView) findViewById(R.id.ivType);
+		// Activity background color
 		setImageOfTransportType();
+		
+		// Actionbar Title
+		setTitle(type.toUpperCase());
 
 		// Load lines
 		listLine = (ListView) findViewById(R.id.listLine);
@@ -171,22 +173,27 @@ public class LinesActivity extends Activity {
 
 	private void setImageOfTransportType() {
 		if (type.equals("metro")) {
-			ivType.setImageResource(R.drawable.metro);
+			getActionBar().setIcon(R.drawable.metro);
+			getActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.orange)));
 			setActivityBackgroundColor(getResources().getColor(R.color.orange));
 		} else if (type.equals("rer")) {
-			ivType.setImageResource(R.drawable.rer);
+			getActionBar().setIcon(R.drawable.rer);
+			getActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.black)));
 			setActivityBackgroundColor(getResources().getColor(R.color.black));
 		} else if (type.equals("tram")) {
-			ivType.setImageResource(R.drawable.tramway);
+			getActionBar().setIcon(R.drawable.tramway);
+			getActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.darkblue)));
 			setActivityBackgroundColor(getResources().getColor(R.color.darkblue));
 		} else if (type.equals("bus")) {
-			ivType.setImageResource(R.drawable.bus);
+			getActionBar().setIcon(R.drawable.bus);
+			getActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.green)));
 			setActivityBackgroundColor(getResources().getColor(R.color.green));
 		}
 	}
 
 	private void setActivityBackgroundColor(int color) {
-		View view = this.getWindow().getDecorView();
+		Fragment currentFragment = this.getFragmentManager().findFragmentById(R.id.fragment_lines);
+		View view = currentFragment.getView();
 		view.setBackgroundColor(color);
 	}
 }

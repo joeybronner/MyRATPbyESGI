@@ -2,12 +2,13 @@ package fr.esgi.ratp;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.Fragment;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 import fr.esgi.ratp.db.DataBaseOperations;
 import fr.esgi.ratp.objects.Station;
@@ -17,16 +18,12 @@ public class StationActivity extends Activity {
 
 	String stationID, stationName, stationLatitude, stationLongitude, stationType, stationLine, stationLocalisation;
 	Button btSave;
-	TextView tvTitle;
 	DataBaseOperations db;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_station);
-
-		// Hide action bar
-		getActionBar().hide();
 
 		// Load type of lines
 		Intent myIntent = getIntent();
@@ -40,8 +37,7 @@ public class StationActivity extends Activity {
 		setImageOfTransportType();
 
 		// Change Title content
-		tvTitle = (TextView) findViewById(R.id.tvTitleStation);
-		tvTitle.setText(stationName.toUpperCase());
+		getActionBar().setTitle(stationName.toUpperCase());
 
 		// Load data
 		db = new DataBaseOperations(this);
@@ -87,22 +83,31 @@ public class StationActivity extends Activity {
 	
 	private void setImageOfTransportType() {
 		if (stationType.equals("metro")) {
+			getActionBar().setIcon(R.drawable.metro);
+			getActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.orange)));
 			setActivityBackgroundColor(getResources().getColor(R.color.orange));
 			btSave.setBackgroundColor(getResources().getColor(R.color.darkorange));
 		} else if (stationType.equals("rer")) {
+			getActionBar().setIcon(R.drawable.rer);
+			getActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.black)));
 			setActivityBackgroundColor(getResources().getColor(R.color.black));
 			btSave.setBackgroundColor(getResources().getColor(R.color.silver));
 		} else if (stationType.equals("tram")) {
+			getActionBar().setIcon(R.drawable.tramway);
+			getActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.darkblue)));
 			setActivityBackgroundColor(getResources().getColor(R.color.darkblue));
 			btSave.setBackgroundColor(getResources().getColor(R.color.blue));
 		} else if (stationType.equals("bus")) {
+			getActionBar().setIcon(R.drawable.bus);
+			getActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.green)));
 			setActivityBackgroundColor(getResources().getColor(R.color.green));
 			btSave.setBackgroundColor(getResources().getColor(R.color.lightgreen));
 		}
 	}
-	
-	public void setActivityBackgroundColor(int color) {
-		View view = this.getWindow().getDecorView();
+
+	private void setActivityBackgroundColor(int color) {
+		Fragment currentFragment = this.getFragmentManager().findFragmentById(R.id.fragment_lines);
+		View view = currentFragment.getView();
 		view.setBackgroundColor(color);
 	}
 

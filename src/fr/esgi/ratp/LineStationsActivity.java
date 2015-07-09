@@ -7,22 +7,26 @@ import java.util.List;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Fragment;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 import fr.esgi.ratp.db.DataBaseOperations;
 import fr.esgi.ratp.objects.Station;
+import fr.esgi.ratp.utils.Constants;
 import fr.esgi.ratp.utils.Utilities;
 
 @SuppressLint("DefaultLocale")
@@ -32,16 +36,11 @@ public class LineStationsActivity extends Activity {
 	ArrayAdapter<String> adapter;
 	String type, line, station;
 	int selectedPosition;
-	ImageView ivType;
-	TextView tvTitle;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_line_stations);
-
-		// Hide Action Bar
-		getActionBar().hide();
 
 		// Get Stations
 		final DataBaseOperations db = new DataBaseOperations(this);
@@ -50,13 +49,9 @@ public class LineStationsActivity extends Activity {
 		Intent myIntent = getIntent();
 		type = myIntent.getStringExtra("type");
 		line = myIntent.getStringExtra("line");
-
-		// Change Title content
-		tvTitle = (TextView) findViewById(R.id.tvTitleWithStation);
-		tvTitle.setText(type.toUpperCase() + " > " + line);
-
-		// Change image
-		ivType = (ImageView) findViewById(R.id.ivTypeLineStation);
+		
+		// Actionbar Title
+		setTitle(type.toUpperCase() + " > " + line);
 		setImageOfTransportType();
 
 		// Load data from database
@@ -136,32 +131,47 @@ public class LineStationsActivity extends Activity {
 			@Override
 			public void afterTextChanged(Editable s) { }
 		});
-
-		ImageView btAddStation = (ImageView) findViewById(R.id.btAddStation);
-		btAddStation.setOnClickListener(new View.OnClickListener() {
-			//@Override
-			@Override
-			public void onClick(View v) {
+	}
+	
+	public boolean onCreateOptionsMenu(Menu menu) {
+	    // Inflate the menu items for use in the action bar
+	    MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.line_stations, menu);
+	    return super.onCreateOptionsMenu(menu);
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    switch (item.getItemId()) {
+	        case R.id.action_addstation:
+				Constants.LINE = line;
 				Utilities.openView(LineStationsActivity.this, AddStationActivity.class, type, line);
-			}        
-		});
+	            return true;
+	        default:
+	            return super.onOptionsItemSelected(item);
+	    }
 	}
 	
 	private void setImageOfTransportType() {
 		if (type.equals("metro")) {
-			ivType.setImageResource(R.drawable.metro);
+			getActionBar().setIcon(R.drawable.metro);
+			getActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.orange)));
 			setActivityBackgroundColor(getResources().getColor(R.color.orange));
 		} else if (type.equals("rer")) {
-			ivType.setImageResource(R.drawable.rer);
+			getActionBar().setIcon(R.drawable.rer);
+			getActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.black)));
 			setActivityBackgroundColor(getResources().getColor(R.color.black));
 		} else if (type.equals("tram")) {
-			ivType.setImageResource(R.drawable.tramway);
+			getActionBar().setIcon(R.drawable.tramway);
+			getActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.darkblue)));
 			setActivityBackgroundColor(getResources().getColor(R.color.darkblue));
 		} else if (type.equals("bus")) {
-			ivType.setImageResource(R.drawable.bus);
+			getActionBar().setIcon(R.drawable.bus);
+			getActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.green)));
 			setActivityBackgroundColor(getResources().getColor(R.color.green));
 		}
 	}
+
 
 	private String[] removeNullValues(String[] firstArray) {
 		List<String> list = new ArrayList<String>();
@@ -174,8 +184,9 @@ public class LineStationsActivity extends Activity {
 		return list.toArray(new String[list.size()]);
 	}
 
-	public void setActivityBackgroundColor(int color) {
-		View view = this.getWindow().getDecorView();
+	private void setActivityBackgroundColor(int color) {
+		Fragment currentFragment = this.getFragmentManager().findFragmentById(R.id.fragment_lines);
+		View view = currentFragment.getView();
 		view.setBackgroundColor(color);
 	}
 }

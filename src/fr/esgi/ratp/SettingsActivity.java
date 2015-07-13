@@ -10,11 +10,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import fr.esgi.ratp.asyncTask.Asyntask;
 import fr.esgi.ratp.db.DataBaseOperations;
 import fr.esgi.ratp.utils.Constants;
 
 public class SettingsActivity extends Activity {
 
+	// ayntask
+	Asyntask ayntask;
 	// Line
 	int idLine = 0;
 	String nameLine = "";
@@ -67,16 +70,18 @@ public class SettingsActivity extends Activity {
 		btLoad.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				final ProgressDialog progressDialog = ProgressDialog.show(SettingsActivity.this, getResources().getString(R.string.waitTitle), getResources().getString(R.string.waitDescriptionLoad), false);
-				progressDialog.setCancelable(false);
-				new Thread(new Runnable() {
+			/*	final ProgressDialog progressDialog = ProgressDialog.show(SettingsActivity.this, getResources().getString(R.string.waitTitle), getResources().getString(R.string.waitDescriptionLoad), false);
+				progressDialog.setCancelable(false);*/
+				new Asyntask(db,SettingsActivity.this).execute("stations","lines");
+			/*new Thread(new Runnable() {
 					@Override
 					public void run() {
-						loadLines(db);
-						loadStations(db);
-						progressDialog.dismiss();
+					//	loadLines(db);
+					//	loadStations(db);
+					
+				//		progressDialog.dismiss();
 					}
-				}).start();
+				}).start();*/
 			}
 		});
 	}
@@ -84,7 +89,9 @@ public class SettingsActivity extends Activity {
 	private void loadStations(final DataBaseOperations db) {		
 		AssetManager assetManager = getAssets();
 		try {
-			BufferedReader fichierStation = new BufferedReader(new InputStreamReader(assetManager.open(Constants.FILE_RATP_STATION)));	
+			
+			
+		/*	BufferedReader fichierStation = new BufferedReader(new InputStreamReader(assetManager.open(Constants.FILE_RATP_STATION)));	
 			String chaine;
 			while ((chaine=fichierStation.readLine())!=null) {
 				String[] tabChaineStation = chaine.split("#");
@@ -97,14 +104,14 @@ public class SettingsActivity extends Activity {
 				Log.d("station",idStation + "|" + nameStation + "|" + localisation + "|" + typeLine + "|" + latitude + "|" + longitude);
 				db.insertStation(idStation, nameStation, localisation, typeLine, latitude, longitude);
 			}
-			fichierStation.close();
+			fichierStation.close();*/
 		} catch (Exception e) { /* Nothing */ }
 	}
 
 	private void loadLines(final DataBaseOperations db) {
 		AssetManager assetManager = getAssets();
 		try {
-			BufferedReader fichierLigne = new BufferedReader(new InputStreamReader(assetManager.open(Constants.FILE_RATP_LINE)));	
+		/*	BufferedReader fichierLigne = new BufferedReader(new InputStreamReader(assetManager.open(Constants.FILE_RATP_LINE)));	
 			String chaine;
 			while((chaine = fichierLigne.readLine())!= null) {
 				String[] tabChaine = chaine.split("#",3);
@@ -146,7 +153,7 @@ public class SettingsActivity extends Activity {
 				}
 
 			}
-			fichierLigne.close();
+			fichierLigne.close();*/
 		} catch (Exception e) { /* Nothing */ }
 	}
 }

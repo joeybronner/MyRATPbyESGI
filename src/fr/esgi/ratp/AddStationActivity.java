@@ -32,9 +32,9 @@ public class AddStationActivity extends Activity {
 
 		// Load type of lines
 		try {
-		Intent myIntent = getIntent();
-		type = myIntent.getStringExtra("type");
-		line = myIntent.getStringExtra("line");
+			Intent myIntent = getIntent();
+			type = myIntent.getStringExtra("type");
+			line = myIntent.getStringExtra("line");
 		} catch (Exception e) {
 			type = Constants.TYPE;
 			line = Constants.LINE;
@@ -46,14 +46,14 @@ public class AddStationActivity extends Activity {
 
 		// Database
 		db = new DataBaseOperations(this);
-		
+
 		// Actionbar Title
 		setTitle(getResources().getString(R.string.titleAddStation));
 		getActionBar().setIcon(R.drawable.station);
 
 		// Create unique ID
 		newID = generateNewID();
-		
+
 		// Load all EditText values & fields
 		loadAllEditText();
 
@@ -97,7 +97,7 @@ public class AddStationActivity extends Activity {
 			}
 		});
 	}
-	
+
 	private boolean fieldsCompleted() {
 		// Name
 		if (etNewStationName.getText().toString().trim().equals(""))
@@ -114,10 +114,10 @@ public class AddStationActivity extends Activity {
 		// Longitude
 		if (etNewStationLongitude.getText().toString().trim().equals(""))
 			return false;
-		
+
 		return true;
 	}
-	
+
 	private int generateNewID() {
 		int id;
 		do {
@@ -126,7 +126,7 @@ public class AddStationActivity extends Activity {
 		} while(!db.isStationIDUnique(newID));
 		return id;
 	}
-	
+
 	private void loadAllEditText() {
 		etNewStationID = (EditText) findViewById(R.id.etNewStationID);
 		etNewStationID.setText(String.valueOf(newID));

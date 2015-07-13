@@ -7,7 +7,6 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import fr.esgi.ratp.asyncTask.Asyntask;
 import fr.esgi.ratp.objects.Line;
 import fr.esgi.ratp.objects.Station;
 
@@ -36,8 +35,6 @@ public class DataBaseOperations extends SQLiteOpenHelper {
 	public DataBaseOperations(Context context) {
 		super(context, DATABASE_NAME , null, 1);
 	}
-
-
 
 	@Override
 	public void onCreate(SQLiteDatabase db) {

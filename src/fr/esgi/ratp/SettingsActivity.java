@@ -2,6 +2,7 @@ package fr.esgi.ratp;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -38,9 +39,11 @@ public class SettingsActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_settings);
 
-		//Hide Action Bar
-		getActionBar().hide();
-
+		// Actionbar color & logo
+		getActionBar().setIcon(R.drawable.settings);
+		getActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.darkgray)));
+		
+		
 		// Button Purge Data
 		btPurge = (Button) findViewById(R.id.btPurgeData);
 		btPurge.setOnClickListener(new View.OnClickListener() {

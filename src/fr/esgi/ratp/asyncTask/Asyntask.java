@@ -53,11 +53,8 @@ public class Asyntask extends AsyncTask<String, Void, String> {
 	protected String doInBackground(String... params) {
 		URL lineUrl ;
 		try {
-			//Log.d("type", params[0]);
 			if (params[1]=="lines") {
 				lineUrl= new URL("http://joeybronner.fr/myratpbyesgi/ratp.csv") ;
-				//HttpURLConnection conn = (HttpURLConnection) lineUrl.openConnection();
-				//Log.d("teste",conn.getResponseMessage());
 				BufferedReader in = new BufferedReader(new InputStreamReader(lineUrl.openStream()));
 				String line = null;
 				while ((line = in.readLine()) != null) {
@@ -68,7 +65,6 @@ public class Asyntask extends AsyncTask<String, Void, String> {
 						arrivalLine = "";
 						typeLine = tabChaine[2].trim();
 						idLine = Integer.parseInt(tabChaine[0]);
-						//Log.d("line",nameLine + "|" + departureLine + "|" + arrivalLine + "|" + typeLine + "|" + idLine);
 						db.insertLine(nameLine, departureLine, arrivalLine, typeLine, idLine);
 					}
 					else if (tabChaine[1].substring(tabChaine[1].indexOf("/")-1,tabChaine[1].indexOf(")")+1).equals(")")) {
@@ -77,7 +73,6 @@ public class Asyntask extends AsyncTask<String, Void, String> {
 						arrivalLine = "";
 						typeLine = tabChaine[2].trim();
 						idLine = Integer.parseInt(tabChaine[0]);
-						//Log.d("line",nameLine + "|" + departureLine + "|" + arrivalLine + "|" + typeLine + "|" + idLine);
 						db.insertLine(nameLine, departureLine, arrivalLine, typeLine, idLine);
 					}
 					else if (tabChaine[1].substring(tabChaine[1].indexOf("(")-1,tabChaine[1].indexOf("/")+1).equals("/")) {
@@ -86,7 +81,6 @@ public class Asyntask extends AsyncTask<String, Void, String> {
 						arrivalLine = tabChaine[1].substring(tabChaine[1].indexOf("/")+1,tabChaine[1].indexOf(")")).trim();
 						typeLine = tabChaine[2].trim();
 						idLine = Integer.parseInt(tabChaine[0]);
-						//Log.d("line",nameLine + "|" + departureLine + "|" + arrivalLine + "|" + typeLine + "|" + idLine);
 						db.insertLine(nameLine, departureLine, arrivalLine, typeLine, idLine);
 					}
 					else {
@@ -95,20 +89,16 @@ public class Asyntask extends AsyncTask<String, Void, String> {
 						arrivalLine = tabChaine[1].substring(tabChaine[1].indexOf("/")+1,tabChaine[1].indexOf(")")).trim();
 						typeLine = tabChaine[2].trim();
 						idLine = Integer.parseInt(tabChaine[0]);
-						//Log.d("line",nameLine + "|" + departureLine + "|" + arrivalLine + "|" + typeLine + "|" + idLine);
 						db.insertLine(nameLine, departureLine, arrivalLine, typeLine, idLine);
 					}
 				}
 
 			}
 			if (params[0]=="stations") {
-				lineUrl= new URL(" http://joeybronner.fr/myratpbyesgi/ratpStation.csv") ;
-				//HttpURLConnection conn = (HttpURLConnection) lineUrl.openConnection();
-				//Log.d("teste",conn.getResponseMessage());
+				lineUrl= new URL("http://joeybronner.fr/myratpbyesgi/ratpStation.csv") ;
 				BufferedReader in = new BufferedReader(new InputStreamReader(lineUrl.openStream()));
 				String line = null;
 				while ((line = in.readLine()) != null) {
-					//Log.d("respone",line);
 					String[] tabChaineStation = line.split("#");
 					idStation = Integer.parseInt(tabChaineStation[0]);
 					nameStation = tabChaineStation[3].trim();
@@ -116,7 +106,6 @@ public class Asyntask extends AsyncTask<String, Void, String> {
 					typeLine = tabChaineStation[5];
 					latitude = tabChaineStation[1];
 					longitude = tabChaineStation[2];
-					//Log.d("station",idStation + "|" + nameStation + "|" + localisation + "|" + typeLine + "|" + latitude + "|" + longitude);
 					db.insertStation(idStation, nameStation, localisation, typeLine, latitude, longitude);
 				}
 				in.close();
@@ -131,7 +120,6 @@ public class Asyntask extends AsyncTask<String, Void, String> {
 	@Override
 	protected void onPostExecute(String result) {
 		progressDialog.dismiss();
-
 	}
 
 }
